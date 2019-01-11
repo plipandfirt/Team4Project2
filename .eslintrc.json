@@ -8,6 +8,14 @@
     "plugins": [
         "prettier"
       ],
+      "parserOptions": {
+      "ecmaVersion": 2017,
+      "sourceType": "module",
+      "ecmaFeatures": {
+       "jsx": true,
+       "experimentalObjectRestSpread": true
+      }
+    },
     "rules": {
         "no-duplicate-case":"error",
         "no-empty":"error",
@@ -37,7 +45,6 @@
         "semi": [
             "error",
             "always"
-        ],
-        "prettier/prettier": "error"
+        ]
     }
 }
