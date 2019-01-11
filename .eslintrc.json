@@ -8,6 +8,14 @@
     "plugins": [
         "prettier"
       ],
+      "parserOptions": {
+      "ecmaVersion": 6,
+      "sourceType": "module",
+      "ecmaFeatures": {
+       "jsx": true,
+       "experimentalObjectRestSpread": true
+      }
+    },
     "rules": {
         "no-duplicate-case":"error",
         "no-empty":"error",
@@ -39,13 +47,5 @@
             "always"
         ],
         "prettier/prettier": "error"
-    },
-    "parserOptions": {
-      "ecmaVersion": 6,
-      "sourceType": "module",
-      "ecmaFeatures": {
-       "jsx": true,
-       "experimentalObjectRestSpread": true
-      }
     }
 }
