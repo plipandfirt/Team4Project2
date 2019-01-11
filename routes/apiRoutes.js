@@ -1,25 +1,21 @@
-/* eslint prettier/prettier:0 */
-var db = require("../models");
+const db = require("../models");
 
 module.exports = function(app) {
   // Get all examples
-  app.get("/api/examples", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
-      res.json(dbExamples);
-    });
+  app.get("/api/examples", async function(req, res) {
+    const data = await db.Example.findAll({});
+    res.json(data);
   });
 
   // Create a new example
-  app.post("/api/examples", function(req, res) {
-    db.Example.create(req.body).then(function(dbExample) {
-      res.json(dbExample);
-    });
+  app.post("/api/examples", async function(req, res) {
+    const data = await db.Example.create(req.body);
+    res.json(data);
   });
 
   // Delete an example by id
-  app.delete("/api/examples/:id", function(req, res) {
-    db.Example.destroy({ where: { id: req.params.id } }).then(function(dbExample) {
-      res.json(dbExample);
-    });
+  app.delete("/api/examples/:id", async function(req, res) {
+    const data = await db.Example.destroy({ where: { id: req.params.id } });
+    res.json(data);
   });
 };

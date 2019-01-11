@@ -4,6 +4,9 @@
         "commonjs": true,
         "node": true
     },
+    "parserOptions": {
+        "ecmaVersion": 6
+    },
     "extends": "prettier",
     "plugins": [
         "prettier"
@@ -38,6 +41,5 @@
             "error",
             "always"
         ],
-        "prettier/prettier": "error"
     }
 }
