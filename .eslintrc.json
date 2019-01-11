@@ -46,6 +46,5 @@
             "error",
             "always"
         ],
-        "prettier/prettier": "error"
     }
 }

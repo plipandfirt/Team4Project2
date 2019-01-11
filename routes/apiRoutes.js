@@ -1,4 +1,3 @@
-/* eslint prettier/prettier:0 */
 const db = require("../models");
 
 module.exports = function(app) {
