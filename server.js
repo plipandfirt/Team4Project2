@@ -1,3 +1,4 @@
+/* eslint camelcase:0 */
 require("dotenv").config();
 const express = require("express");
 const exphbs = require("express-handlebars");
@@ -34,14 +35,31 @@ if (process.env.NODE_ENV === "test") {
 }
 
 // Starting the server, syncing our models ------------------------------------/
-db.sequelize.sync(syncOptions).then(function() {
-  app.listen(PORT, function() {
-    console.log(
-      "==> 🌎  Serving fools on port %s. Visit http://localhost:%s/ in your browser.",
-      PORT,
-      PORT
-    );
-  });
-});
+async function startServer(){
+  try{
+    await db.sequelize.sync(syncOptions);
+    
+    // await db.user.create({
+    //   email:"hungry@cornucopia.com",
+    //   password:"123456",
+    //   first_name:"Tom",
+    //   last_name:"Myspace",
+    // });
+    
+    return app.listen(PORT, function() {
+      console.log(
+        "==> 🌎  Serving fools on port %s. Visit http://localhost:%s/ in your browser.",
+        PORT,
+        PORT
+      );
+    });
+  }
+  catch(error){
+    console.log("Something has gone horribly wrong!");
+    console.log(error);
+  }
+}
+
+startServer();
 
 module.exports = app;
