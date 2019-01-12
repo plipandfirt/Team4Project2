@@ -3,13 +3,39 @@
 
 <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
+
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+  <!--Font Awesome for Icons -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
   <link rel="stylesheet" href="/styles/styles.css" media="screen" title="no title" charset="utf-8">
-  <title>Home Page</title>
+
+  <title>Cornucopia</title>
 </head>
 
 <body>
+
+    <nav class="orange darken-1">
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo">Cornucopia</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><div class="input-field col s6">
+          <input placeholder="Search for a recipe..." id="recipe" type="text" class="validate">
+        </div></li>
+        <li><a href="#" id="search"><i class="fas fa-search"></a></i>
+        <li><a href="#">My Pantry</a></li>
+        <li><a href="#">Sign Up/Log in</a></li>
+      </ul>
+    </div>
+  </nav>
+ 
   {{{body}}}
+  
 </body>
 
 </html>
