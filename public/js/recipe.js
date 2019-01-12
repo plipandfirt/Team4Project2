@@ -8,7 +8,7 @@ async function fetchRecipes(){
 //   const chicken = await fetch(`https://api.edamam.com/search?app_id=${appId}&app_key=${appKey}&q=chicken`);
 //   console.log(chicken);
   const data = await fetch("/api/recipes");
-//   console.log(data);
+  console.log(data);
 }
 
 fetchRecipes();
