@@ -43,13 +43,6 @@ async function startServer(){
   try{
     await db.sequelize.sync(syncOptions);
     
-    // await db.user.create({
-    //   email:"hungry@cornucopia.com",
-    //   password:"123456",
-    //   first_name:"Tom",
-    //   last_name:"Myspace",
-    // });
-    
     return app.listen(PORT, function() {
       console.log(
         "==> 🌎  Serving fools on port %s. Visit http://localhost:%s/ in your browser.",

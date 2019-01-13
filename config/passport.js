@@ -1,6 +1,7 @@
+/* eslint camelcase:0 */
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
-// const db = require("../models");
+const db = require("../models/index");
 
 passport.use(
   new GoogleStrategy({
@@ -10,9 +11,22 @@ passport.use(
     // clientId: process.env.GOOGLE_OAUTH_ID,
     // clientSecret: process.env.GOOGLE.OAUTH.SECRET
   },function(accessToken, refreshToken, profile, done) {
-    // console.log(accessToken);
-    // console.log(refreshToken);
-    console.log(profile);
-    // done(null,profile);
+    // console.log(profile);
+    const {id,displayName} = profile;
+    // console.log(id,displayName);
+    db.user.findOrCreate({
+      where:{google_id:id},
+      defaults:{
+        username:displayName
+      }
+    })
+      .spread((user,created)=>{
+        console.log("in spread");
+        console.log(user.get({plain:true}));
+        console.log(created);
+      });
+
+
+
   }
   ));

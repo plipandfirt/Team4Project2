@@ -12,12 +12,10 @@ module.exports = function(app){
   // app.get("/auth/google",passport.authenticate("google",{scope:["https://www.googleapis.com/auth/plus.login"]}));
   app.get("/auth/google",passport.authenticate("google",{scope:["profile"]}));
     
-  app.get("/auth/google/redirect",
-    passport.authenticate("google",),
-    function(req,res){
-      // res.send("redirect");
-      res.redirect("/");
-    }
+  app.get("/auth/google/redirect", passport.authenticate("google"),function(req,res){
+    res.send("redirect");
+    // res.redirect("/");
+  }
   );
 
 };
