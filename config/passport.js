@@ -3,6 +3,18 @@ const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const db = require("../models/index");
 
+// serializeUser taken a user after the findOrCreate method and creates a cookie to pass to the browser
+passport.serializeUser((user,done) => {
+  done(null,user.id);
+});
+
+// deserializeUser takes the cookie from the brower when a user visits subsequent pages and gets the correct profile information from that cookie
+passport.deserializeUser((id,done) => {
+  db.user.findOne({where:{id:id}}).then(user=>done(null,user));
+  // db.user.findByPk(id).then(user => done(null,user));
+});
+
+
 passport.use(
   new GoogleStrategy({
     clientID:"315698839486-20drpj5he53a718grgcfjme0sllhdqms.apps.googleusercontent.com",
@@ -20,10 +32,12 @@ passport.use(
         username:displayName
       }
     })
+    // user information is available in user, and created is a boolean value to state whether a DB entry was created or not
       .spread((user,created)=>{
         console.log("in spread");
         console.log(user.get({plain:true}));
         console.log(created);
+        done(null,user);
       });
 
 
