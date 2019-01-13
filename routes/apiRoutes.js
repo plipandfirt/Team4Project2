@@ -24,11 +24,14 @@ module.exports = function(app) {
     res.json(data);
   });
 
-  app.get("/api/recipes", async function(req,res){
+  app.get("/api/recipes/:query", async function(req,res){
+    const search = req.params.query;
+    console.log(search);
     const baseUrl = `https://api.edamam.com/search?app_id=${appId}&app_key=${appKey}&`;
-    const chicken = await axios.get(`${baseUrl}q=chicken`);
-    const {hits:results} = chicken.data;
+    const data = await axios.get(`${baseUrl}q=${search}`);
+    const {hits:results} = data.data;
     console.log(results);
+    res.json(results);
     // res.send(JSON.stringify(results));
   });
 };
