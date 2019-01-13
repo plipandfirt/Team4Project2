@@ -2,6 +2,7 @@
 require("dotenv").config();
 const express = require("express");
 const exphbs = require("express-handlebars");
+const passportConfig = require("./config/passport");
 
 const db = require("./models");
 
@@ -41,13 +42,6 @@ if (process.env.NODE_ENV === "test") {
 async function startServer(){
   try{
     await db.sequelize.sync(syncOptions);
-    
-    // await db.user.create({
-    //   email:"hungry@cornucopia.com",
-    //   password:"123456",
-    //   first_name:"Tom",
-    //   last_name:"Myspace",
-    // });
     
     return app.listen(PORT, function() {
       console.log(
