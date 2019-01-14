@@ -1,14 +1,18 @@
-async function fetchRecipes(){
-//   const appId = process.env.EDAMAM_RECIPE_APP_ID;
-//   const appId = "9ba82081";
-//   const appKey = "7812af8b5126f42bf75451a05e092929";
-  //   const appKey = process.env.EDAMAM_RECIPE_APP_KEY;
-//   const baseUrl = `https://api.edamam.com/search?app_id=${appId}&app_key=${appKey}`;
-//   console.log(baseUrl);
-//   const chicken = await fetch(`https://api.edamam.com/search?app_id=${appId}&app_key=${appKey}&q=chicken`);
-//   console.log(chicken);
-  const data = await fetch("/api/recipes");
-  console.log(data);
-}
+const searchInput = document.querySelector("#recipe");
+const searchButton = document.querySelector("#search");
 
-fetchRecipes();
+document.addEventListener("DOMContentLoaded",(event)=>{
+  // console.log("recipe.js loaded");
+  searchButton.addEventListener("click",(event)=>{
+    console.log(searchInput.value);
+    fetchRecipes(searchInput.value);
+  });
+
+  async function fetchRecipes(input){
+    const query = input.split().join("&q=");
+    console.log(`Running fetch recipes with ${query}`);
+    const data = await fetch(`/api/recipes/${query}`);
+    console.log(data);
+  }
+
+});

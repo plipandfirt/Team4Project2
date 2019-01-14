@@ -3,18 +3,24 @@ module.exports = function(sequelize,DataTypes){
   return sequelize.define("user",{
     email:{
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
       validate:{
         isEmail: true
       }
     },
     password:{
       type:DataTypes.STRING,
-      allowNull:false,
+      allowNull:true,
       validate:{
         len:[6],
         is: /^[a-z0-9!@#$%^&*-]+$/i
       }
+    },
+    username:{
+      type: DataTypes.STRING,
+    },
+    google_id:{
+      type:DataTypes.STRING,
     },
     first_name:{
       type: DataTypes.STRING,
