@@ -30,8 +30,9 @@ module.exports = function(app) {
     const baseUrl = `https://api.edamam.com/search?app_id=${appId}&app_key=${appKey}&`;
     const data = await axios.get(`${baseUrl}q=${search}`);
     const {hits:results} = data.data;
-    console.log(results);
-    res.json(results);
+    console.log(`Found ${results.length} results`);
+    console.log({data:results});
+    res.json({data:results});
     // res.send(JSON.stringify(results));
   });
 };

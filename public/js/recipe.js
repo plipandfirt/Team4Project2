@@ -12,8 +12,8 @@ document.addEventListener("DOMContentLoaded",(event)=>{
     const query = input.split().join("&q=");
     console.log(`Running fetch recipes with ${query}`);
     const data = await fetch(`/api/recipes/${query}`);
-    // console.log(data.recipe);
-    return data;
+    // console.log(data.json());
+    return data.json();
   }
 
 });
