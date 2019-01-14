@@ -5,14 +5,15 @@ document.addEventListener("DOMContentLoaded",(event)=>{
   // console.log("recipe.js loaded");
   searchButton.addEventListener("click",(event)=>{
     console.log(searchInput.value);
-    fetchRecipes(searchInput.value);
+    fetchRecipes(searchInput.value).then(response=>console.log(response));
   });
 
   async function fetchRecipes(input){
     const query = input.split().join("&q=");
     console.log(`Running fetch recipes with ${query}`);
     const data = await fetch(`/api/recipes/${query}`);
-    console.log(data);
+    // console.log(data.recipe);
+    return data;
   }
 
 });
