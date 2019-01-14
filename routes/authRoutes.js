@@ -13,8 +13,9 @@ module.exports = function(app){
   app.get("/auth/google",passport.authenticate("google",{scope:["profile"]}));
     
   app.get("/auth/google/redirect", passport.authenticate("google"),function(req,res){
-    res.send("redirect");
-    // res.redirect("/");
+    // res.send(req.user);
+    console.log(req.user);
+    res.redirect("/profile");
   }
   );
 
