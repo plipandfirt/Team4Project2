@@ -1,12 +1,13 @@
 const searchInput = document.querySelector("#recipe");
 const searchButton = document.querySelector("#search");
-const loginButton = document.querySelector("#login-button");
+const loginModalButton = document.querySelector("#login-modal-button");
 const createAccountButton = document.querySelector("#create-button");
 const loginModal = document.querySelector('#sign-up');
 const firstNameInput = document.querySelector("#first_name");
 const lastNameInput = document.querySelector("#last_name");
 const usernameInput = document.querySelector("#username");
 const passwordInput = document.querySelector("#password");
+const loginButton = document.querySelector("#login-button");
 
 
 document.addEventListener("DOMContentLoaded",(event)=>{
@@ -16,12 +17,15 @@ document.addEventListener("DOMContentLoaded",(event)=>{
   const loginModalInstance = M.Modal.init(loginModal);
   
   //event listeners
-  loginButton.addEventListener("click",(event) => {
+  loginModalButton.addEventListener("click",(event) => {
     loginModalInstance.open();
   });
   
+  loginButton.addEventListener("click",async (event) => {
+    await fetch("/login");
+  });
+  
   createAccountButton.addEventListener("click", async (event) => {
-
     const data = {
       firstName:firstNameInput.value,
       lastName:lastNameInput.value,

@@ -51,18 +51,21 @@ passport.use(
         db.user.findOne({
           where:{
             username:username,
-            password:passport
+            password:password
           }
         })
         .then(user => {
           if(user){
+            console.log("user found");
             return done(null,user);
           }
           else{
+            console.log("user not found");
             return done(null,false);
           }
         })
         .catch(err => {
+          console.log("error, in catch block");
           return done(err);
         });
       }

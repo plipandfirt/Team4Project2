@@ -22,7 +22,9 @@ module.exports = function(app){
   }
   );
 
-  app.post("/login", passport.authenticate("local", { successRedirect:"/", failureRedirect:"/", failureFlash: true }));
+  app.post("/login", passport.authenticate("local", { failureRedirect:"/", failureFlash: true }),
+    (req,res) => {console.log(req.user)}
+  );
   
   app.post("/add",(req,res) => {
     // console.log("in add post route");
