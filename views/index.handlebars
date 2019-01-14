@@ -31,9 +31,9 @@
           </div>
         </li>
         <li><a href="#" id="search"><i class="fas fa-search"></a></i>
-          {{#unless user}}
-        <li><a href="#">My Pantry</a></li>
-        <li><a href="/auth/google">Sign Up/Log in</a></li>
+        {{#unless user}}
+          <li><a href="#">My Pantry</a></li>
+          <li><a id="login-button" href="#">Sign Up/Log in</a></li>
         {{/unless}}
         {{#if user}}
         <li><a href="#">My Pantry</a></li>
@@ -42,20 +42,21 @@
         {{/if}}
       </ul>
     </div>
-    </div>
-    </div>
-    <div id="sign-up" class="signup modal">
-      <div class="modal-content">
-        <h4>Sign up for My Pantry!</h4>
-        <div class="row">
-          <div class="input-field col s6">
-            <input id="first_name" type="text" class="validate">
-            <label for="first_name">First Name</label>
-          </div>
-          <div class="input-field col s6">
-            <input id="last_name" type="text" class="validate">
-            <label for="last_name">Last Name</label>
-          </div>
+  </div>
+</div>
+<div id="sign-up" class="signup modal">
+    <div class="modal-content">
+      <h4>Sign up for My Pantry!</h4>
+      <a href="/auth/google" class="modal-close waves-effect waves-green btn-flat">Login Using Google</a>
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="first_name" type="text" class="validate">
+          <label for="first_name">First Name</label>
+        </div>
+        <div class="input-field col s6">
+          <input id="last_name" type="text" class="validate">
+          <label for="last_name">Last Name</label>
+        </div>
         </div>
         <div class="row">
           <div class="input-field col s12">
@@ -83,21 +84,7 @@
         <p>Recipe Steps</p>
       </div>
     </div>
-
-    <script>
-
-      //Initialize signup modal
-      document.addEventListener('DOMContentLoaded', function () {
-        var elems = document.querySelectorAll('.signup');
-        var instances = M.Modal.init(elems);
-      });
-      //Initialize recipe full view modal
-      document.addEventListener('DOMContentLoaded', function () {
-        var elems = document.querySelectorAll('.recipefull');
-        var instances = M.Modal.init(elems, options);
-      });
-
-    </script>
+  </div>
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     {{!--

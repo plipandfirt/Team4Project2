@@ -1,9 +1,22 @@
 const searchInput = document.querySelector("#recipe");
 const searchButton = document.querySelector("#search");
+const loginButton = document.querySelector("#login-button");
+const loginModal = document.querySelector('#sign-up');
+const recipeModal = document.querySelector('#recipefull');
 
 document.addEventListener("DOMContentLoaded",(event)=>{
   // console.log("recipe.js loaded");
-  searchButton.addEventListener("click",(event)=>{
+  
+  //initialize materialize modals
+  const loginModalInstance = M.Modal.init(loginModal);
+  const recipeModalInstance = M.Modal.init(recipeModal);
+  
+  //event listeners
+  loginButton.addEventListener("click",(event) => {
+    loginModalInstance.open();
+  });
+  
+  searchButton.addEventListener("click",(event) => {
     console.log(searchInput.value);
     fetchRecipes(searchInput.value).then(response=>console.log(response));
   });
