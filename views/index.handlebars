@@ -48,37 +48,33 @@
       
       <div class="row">
         <div class="row">
-          <div class="input-field col s12">
+          <div class="input-field col s6">
             <input id="username" type="text" class="validate">
             <label for="username">Username</label>
           </div>
         
-          <div class="input-field col s12">
+          <div class="input-field col s6">
             <input id="password" type="password" class="validate">
             <label for="password">Password</label>
           </div>
         </div>
       
-        <div class="input-field col s6">
-          <input id="first_name" type="text" class="validate">
-          <label for="first_name">First Name</label>
+        <div class="row hide name">
+          <div class="input-field col s12">
+            <input id="first_name" type="text" class="validate">
+            <label for="first_name">First Name</label>
+          </div>
+          
+          <div class="input-field col s12">
+            <input id="last_name" type="text" class="validate">
+            <label for="last_name">Last Name</label>
+          </div>
         </div>
-        
-        <div class="input-field col s6">
-          <input id="last_name" type="text" class="validate">
-          <label for="last_name">Last Name</label>
-        </div>
-      
-      <div class="row">
-        
-      </div>
-      
-      
       
     </div>
     <div class="modal-footer">
       <a href="/login" id="login-button" class="modal-close waves-effect waves-green btn-flat">Login</a>
-      <a href="#!" id="create-button" class="modal-close waves-effect waves-green btn-flat">Create Account</a>
+      <a href="#!" data-clicked=false id="create-button" class="waves-effect waves-green btn-flat">Sign Up</a>
     </div>
   </div>
 
