@@ -1,7 +1,14 @@
 const searchInput = document.querySelector("#recipe");
 const searchButton = document.querySelector("#search");
 const loginButton = document.querySelector("#login-button");
+const createAccountButton = document.querySelector("#create-button");
 const loginModal = document.querySelector('#sign-up');
+const firstNameInput = document.querySelector("#first_name");
+const lastNameInput = document.querySelector("#last_name");
+const usernameInput = document.querySelector("#username");
+const passwordInput = document.querySelector("#password");
+
+
 document.addEventListener("DOMContentLoaded",(event)=>{
   // console.log("recipe.js loaded");
   
@@ -11,6 +18,30 @@ document.addEventListener("DOMContentLoaded",(event)=>{
   //event listeners
   loginButton.addEventListener("click",(event) => {
     loginModalInstance.open();
+  });
+  
+  createAccountButton.addEventListener("click", async (event) => {
+
+    const data = {
+      firstName:firstNameInput.value,
+      lastName:lastNameInput.value,
+      username:usernameInput.value,
+      password: passwordInput.value
+    };
+    
+    console.log(data);
+    
+    await fetch("/add",{
+      method:"POST",
+      body: JSON.stringify(data),
+      headers: {'Content-Type':'application/json'}
+    })
+    .then(res => {
+      console.log(res);
+    })
+    .catch(err => {
+      console.log(err);
+    });
   });
   
   searchButton.addEventListener("click",(event) => {

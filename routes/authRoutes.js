@@ -1,4 +1,5 @@
 const passport = require("passport");
+const db = require("../models/index");
 
 module.exports = function(app){
   app.get("/auth/login",(req,res)=>{
@@ -22,5 +23,16 @@ module.exports = function(app){
   );
 
   app.post("/login", passport.authenticate("local", { successRedirect:"/", failureRedirect:"/", failureFlash: true }));
+  
+  app.post("/add",(req,res) => {
+    // console.log("in add post route");
+    const {firstName,lastName,username,password} = req.body;
+    db.user.create({
+      first_name: firstName,
+      last_name: lastName,
+      username:username,
+      password:password
+    });
+  });
 
 };
