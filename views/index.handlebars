@@ -30,7 +30,7 @@
         <li><a href="#" id="search"><i class="fas fa-search"></a></i>
         {{#unless user}}
           <li><a href="#">My Pantry</a></li>
-          <li><a href="/auth/google">Sign Up/Log in</a></li>
+          <li><a id="login-button" href="#">Sign Up/Log in</a></li>
         {{/unless}}
         {{#if user}}
           <li><a href="#">My Pantry</a></li>
@@ -71,14 +71,6 @@
       <a href="#!" class="modal-close waves-effect waves-green btn-flat">Create Account</a>
     </div>
   </div>
-  <script>
-
-      document.addEventListener('DOMContentLoaded', function() {
-      var elems = document.querySelectorAll('.signup');
-      var instances = M.Modal.init(elems);
-  });
-    
-  </script>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 {{!-- <script src="/js/index.js"></script> --}}
