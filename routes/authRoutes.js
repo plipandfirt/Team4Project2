@@ -5,8 +5,10 @@ module.exports = function(app){
     res.send("login route");
   });
     
-  app.get("/authlogout",(req,res)=>{
+  app.get("/auth/logout",(req,res)=>{
     //handle logout
+    req.logout();
+    res.redirect("/");
   });
     
   // app.get("/auth/google",passport.authenticate("google",{scope:["https://www.googleapis.com/auth/plus.login"]}));

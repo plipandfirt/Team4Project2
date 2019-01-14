@@ -28,14 +28,15 @@
           <input placeholder="Search for a recipe..." id="recipe" type="text" class="validate">
         </div></li>
         <li><a href="#" id="search"><i class="fas fa-search"></a></i>
-        {{#if user}}
-          <li><a href="#">My Pantry</a></li>
-          <li><a href="#">Logout</a></li>
-        {{/if}}
         {{#unless user}}
           <li><a href="#">My Pantry</a></li>
           <li><a href="/auth/google">Sign Up/Log in</a></li>
         {{/unless}}
+        {{#if user}}
+          <li><a href="#">My Pantry</a></li>
+          <li><img src="{{user.image_url}}"></li>
+          <li><a href="/auth/logout">Logout</a></li>
+        {{/if}}
       </ul>
     </div>
   </div>
@@ -82,9 +83,7 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 {{!-- <script src="/js/index.js"></script> --}}
   </nav>
- 
-  {{{body}}}
-  <script src="/js/recipe.js"></script>
+
 </body>
 
 </html>

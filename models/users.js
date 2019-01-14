@@ -41,9 +41,6 @@ module.exports = function(sequelize,DataTypes){
     image_url:{
       type: DataTypes.STRING,
       allowNull:true,
-      validate:{
-        is: /[.jpg]$|[.png]$|[.jpeg]$/
-      }
     }
   });
 };
