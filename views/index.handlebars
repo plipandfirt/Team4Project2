@@ -11,7 +11,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
   <!--Font Awesome for Icons -->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+    crossorigin="anonymous">
 
   <link rel="stylesheet" href="/styles/styles.css" media="screen" title="no title" charset="utf-8">
 
@@ -20,68 +21,87 @@
 
 <body>
 
-    <nav class="orange darken-1">
+  <nav class="orange darken-1">
     <div class="nav-wrapper">
       <a href="#" class="brand-logo">Cornucopia</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><div class="input-field col s6">
-          <input placeholder="Search for a recipe..." id="recipe" type="text" class="validate">
-        </div></li>
+        <li>
+          <div class="input-field col s6">
+            <input placeholder="Search for a recipe..." id="recipe" type="text" class="validate">
+          </div>
+        </li>
         <li><a href="#" id="search"><i class="fas fa-search"></a></i>
-        {{#unless user}}
-          <li><a href="#">My Pantry</a></li>
-          <li><a href="/auth/google">Sign Up/Log in</a></li>
+          {{#unless user}}
+        <li><a href="#">My Pantry</a></li>
+        <li><a href="/auth/google">Sign Up/Log in</a></li>
         {{/unless}}
         {{#if user}}
-          <li><a href="#">My Pantry</a></li>
-          <li><img src="{{user.image_url}}"></li>
-          <li><a href="/auth/logout">Logout</a></li>
+        <li><a href="#">My Pantry</a></li>
+        <li><img src="{{user.image_url}}"></li>
+        <li><a href="/auth/logout">Logout</a></li>
         {{/if}}
       </ul>
     </div>
-  </div>
-</div>
-<div id="sign-up" class="signup modal">
-    <div class="modal-content">
-      <h4>Sign up for My Pantry!</h4>
-      <div class="row">
-        <div class="input-field col s6">
-          <input id="first_name" type="text" class="validate">
-          <label for="first_name">First Name</label>
+    </div>
+    </div>
+    <div id="sign-up" class="signup modal">
+      <div class="modal-content">
+        <h4>Sign up for My Pantry!</h4>
+        <div class="row">
+          <div class="input-field col s6">
+            <input id="first_name" type="text" class="validate">
+            <label for="first_name">First Name</label>
+          </div>
+          <div class="input-field col s6">
+            <input id="last_name" type="text" class="validate">
+            <label for="last_name">Last Name</label>
+          </div>
         </div>
-        <div class="input-field col s6">
-          <input id="last_name" type="text" class="validate">
-          <label for="last_name">Last Name</label>
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="password" type="password" class="validate">
+            <label for="password">Password</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="email" type="email" class="validate">
+            <label for="email">Email</label>
+          </div>
         </div>
       </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <input id="password" type="password" class="validate">
-          <label for="password">Password</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <input id="email" type="email" class="validate">
-          <label for="email">Email</label>
-        </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Create Account</a>
       </div>
     </div>
-    <div class="modal-footer">
-      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Create Account</a>
+
+    <div id="modal1" class="recipefull modal">
+      <div class="modal-content">
+        <h4>Recipe Title</h4>
+        <img src="recipeURL">
+        <p>Ingredients:</p>
+        <p>Recipe Steps</p>
+      </div>
     </div>
-  </div>
-  <script>
 
-      document.addEventListener('DOMContentLoaded', function() {
-      var elems = document.querySelectorAll('.signup');
-      var instances = M.Modal.init(elems);
-  });
-    
-  </script>
+    <script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-{{!-- <script src="/js/index.js"></script> --}}
+      //Initialize signup modal
+      document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('.signup');
+        var instances = M.Modal.init(elems);
+      });
+      //Initialize recipe full view modal
+      document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('.recipefull');
+        var instances = M.Modal.init(elems, options);
+      });
+
+    </script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    {{!--
+    <script src="/js/index.js"></script> --}}
   </nav>
 
 </body>
