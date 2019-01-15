@@ -2,7 +2,7 @@ const searchInput = document.querySelector("#recipe");
 const searchButton = document.querySelector("#search");
 const loginButton = document.querySelector("#login-button");
 const loginModal = document.querySelector('#sign-up');
-const recipeModal = document.querySelector('#recipefull');
+const recipeModal = document.querySelector('#recipe-full');
 
 document.addEventListener("DOMContentLoaded",(event)=>{
   // console.log("recipe.js loaded");
@@ -14,6 +14,10 @@ document.addEventListener("DOMContentLoaded",(event)=>{
   //event listeners
   loginButton.addEventListener("click",(event) => {
     loginModalInstance.open();
+  });
+
+  document.querySelector("#recipe-button").addEventListener("click",(event) => {
+    recipeModalInstance.open();
   });
   
   searchButton.addEventListener("click",(event) => {
