@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded",(event)=>{
     // clicked state hold the logic for deciding whether to expand the login screen or take the form info and create a database entry
     let clickedState = event.target.dataset.clicked;
     console.log(`clicked: ${clickedState}`);
-    if(clickedState === true){ // if clicked, create database entry
+    if(clickedState === "true"){ // if clicked, create database entry
       console.log("in clicked true");
       const data = {
         firstName:firstNameInput.value,
@@ -46,27 +46,24 @@ document.addEventListener("DOMContentLoaded",(event)=>{
       })
         .then(res => {
           console.log(res);
-          createAccountButton.setAttribute("data-clicked",false);
+          createAccountButton.setAttribute("data-clicked","false");
           nameFieldsDiv.classList.add("hide");
-          createAccountButton.classList.add("modal-close");
+          loginModalInstance.clos();
         })
         .catch(err => {
           console.log(err);
-          createAccountButton.setAttribute("data-clicked",false);
+          createAccountButton.setAttribute("data-clicked","false");
           nameFieldsDiv.classList.add("hide");
-          createAccountButton.classList.add("modal-close");
         });
 
       
     }
     else{ // not clicked, expand the form and set clicked to true;
-      createAccountButton.setAttribute("data-clicked",true);
+      createAccountButton.setAttribute("data-clicked","true");
       nameFieldsDiv.classList.remove("hide");
       loginButton.classList.add("hide");
       createAccountButton.textContent = "Create Account";
     }
-
-    
   });
   
   searchButton.addEventListener("click",(event) => {
