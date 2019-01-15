@@ -30,7 +30,7 @@
         <li><a href="#" id="search"><i class="fas fa-search"></a></i>
         {{#unless user}}
           <li><a href="#">My Pantry</a></li>
-          <li><a id="login-button" href="#">Sign Up/Log in</a></li>
+          <li><a id="login-modal-button" href="#">Sign Up/Log in</a></li>
         {{/unless}}
         {{#if user}}
           <li><a href="#">My Pantry</a></li>
@@ -45,36 +45,39 @@
     <div class="modal-content">
       <h4>Sign up for My Pantry!</h4>
       <a href="/auth/google" class="modal-close waves-effect waves-green btn-flat">Login Using Google</a>
+      
       <div class="row">
-        <div class="input-field col s6">
-          <input id="first_name" type="text" class="validate">
-          <label for="first_name">First Name</label>
+        <div class="row">
+          <div class="input-field col s6">
+            <input id="username" type="text" class="validate">
+            <label for="username">Username</label>
+          </div>
+        
+          <div class="input-field col s6">
+            <input id="password" type="password" class="validate">
+            <label for="password">Password</label>
+          </div>
         </div>
-        <div class="input-field col s6">
-          <input id="last_name" type="text" class="validate">
-          <label for="last_name">Last Name</label>
+      
+        <div class="row hide name">
+          <div class="input-field col s12">
+            <input id="first_name" type="text" class="validate">
+            <label for="first_name">First Name</label>
+          </div>
+          
+          <div class="input-field col s12">
+            <input id="last_name" type="text" class="validate">
+            <label for="last_name">Last Name</label>
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <input id="password" type="password" class="validate">
-          <label for="password">Password</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <input id="email" type="email" class="validate">
-          <label for="email">Email</label>
-        </div>
-      </div>
+      
     </div>
     <div class="modal-footer">
-      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Create Account</a>
+      <a href="#" id="login-button" class="waves-effect waves-green btn-flat">Login</a>
+      <a href="#!" data-clicked="false" id="create-button" class="waves-effect waves-green btn-flat">Sign Up</a>
     </div>
   </div>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-{{!-- <script src="/js/index.js"></script> --}}
   </nav>
 
 </body>

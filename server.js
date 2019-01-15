@@ -15,6 +15,7 @@ const PORT = process.env.PORT || 3000;
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static("public"));
+app.use(require("cookie-parser")());
 
 // set passport to use session keys with a length of 1 day in milliseconds
 app.use(cookieSession({
