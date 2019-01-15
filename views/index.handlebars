@@ -1,5 +1,27 @@
 <div id="home">
   <div class="container">
+            <!-- pantry modal popup-->
+          <div id="pantry" class="modal">
+                <div class="modal-content">
+                  <h4>My Pantry</h4>
+                  <form action="api/burgers" method="POST">
+                        <div class="row">
+                                <div class="input-field col s12">
+                                  <input id="pantryItem" type="text" class="validate">
+                                  <label for="pantryItem">Pantry Item</label>
+                                </div>
+                                <div class="col s12">
+                                    <button class="right-align btn waves-effect waves-light " type="submit" name="action">Submit
+                                    </button>
+                                </div>
+                  </form>
+                </div>
+                <!-- pantry modal footer / agreement button -->
+                <div class="modal-footer">
+                  <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+                </div>
+              </div>
+            </div>
     <div class="row">
       <div class="col-8 offset-2">
         <h1>{{msg}}</h1>
