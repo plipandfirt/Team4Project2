@@ -3,9 +3,9 @@ const passport = require("passport");
 const db = require("../models/index");
 
 module.exports = function(app){
-  app.get("/auth/login",(req,res)=>{
-    res.send("login route");
-  });
+// app.get("/auth/login",(req,res)=>{
+//   res.send("login route");
+// });
     
   app.get("/auth/logout",(req,res)=>{
     //handle logout
@@ -21,8 +21,8 @@ module.exports = function(app){
   }
   );
 
-  app.post("/login", passport.authenticate("local", { failureRedirect:"/", failureFlash: true }),
-    (req,res) => {console.log(req.user);}
+  app.post("/login", passport.authenticate("local", { successRedirect:"/profile",failureRedirect:"/" }),
+    (req,res) => {res.redirect("/profile");}
   );
   
   app.post("/add",(req,res) => {
@@ -33,6 +33,7 @@ module.exports = function(app){
       username:username,
       password:password
     });
+    res.redirect("/");
   });
 
 };

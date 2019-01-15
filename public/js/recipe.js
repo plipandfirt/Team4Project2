@@ -23,7 +23,15 @@ document.addEventListener("DOMContentLoaded",(event)=>{
   });
   
   loginButton.addEventListener("click",async (event) => {
-    await fetch("/login");
+    const username = usernameInput.value;
+    const password = passwordInput.value;
+    console.log(`logging in with ${username} & ${password}`);
+    await fetch("/login",{
+      method:"POST",
+      headers:{"Accept": "application/json",
+        "Content-Type": "application/json"},
+      body:JSON.stringify({"username":username,"password":password})
+    });
   });
   
   createAccountButton.addEventListener("click", async (event) => {
@@ -48,7 +56,8 @@ document.addEventListener("DOMContentLoaded",(event)=>{
           console.log(res);
           createAccountButton.setAttribute("data-clicked","false");
           nameFieldsDiv.classList.add("hide");
-          loginModalInstance.clos();
+          loginModalInstance.close();
+          loginButton.classList.remove("hide");
         })
         .catch(err => {
           console.log(err);
