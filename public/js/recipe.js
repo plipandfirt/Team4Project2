@@ -42,6 +42,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
       },
       body: JSON.stringify({ "username": username, "password": password })
     });
+    window.location = "/profile";
   });
 
   createAccountButton.addEventListener("click", async (event) => {
@@ -63,18 +64,19 @@ document.addEventListener("DOMContentLoaded", (event) => {
         headers: { "Content-Type": "application/json" }
       })
         .then(res => {
+          
           console.log(res);
           createAccountButton.setAttribute("data-clicked", "false");
           nameFieldsDiv.classList.add("hide");
           loginModalInstance.close();
           loginButton.classList.remove("hide");
+          
         })
         .catch(err => {
           console.log(err);
           createAccountButton.setAttribute("data-clicked", "false");
           nameFieldsDiv.classList.add("hide");
         });
-
 
     }
     else { // not clicked, expand the form and set clicked to true;
