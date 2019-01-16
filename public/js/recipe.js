@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
   searchButton.addEventListener("click", (event) => {
     console.log(searchInput.value);
     fetchRecipes(searchInput.value).then(response => {
-      const recipeList = [];
+      recipeList = [];
       for (let i = 0; i < response.data.length; i++) {
         let newRecipe = {
           label: response.data[i].recipe.label,
@@ -116,11 +116,11 @@ document.addEventListener("DOMContentLoaded", (event) => {
   function makeCards() {
     cardWrapperDiv.innerHTML = (``);
     for (let i=0; i<recipeList.length; i++) {
-      let newCard = document.createElement(`<div class="card">`);
+      let newCard = document.createElement(`div`).classList.add(`card`);
       newCard.innerHTML = (`
       <div class="card-image">
-          <img src="${image}">
-          <span class="card-title">${label}</span>
+          <img src="${recipeList[i].image}">
+          <span class="card-title">${recipeList[i].label}</span>
         </div>        
       `);
       cardWrapperDiv.append(newCard);
