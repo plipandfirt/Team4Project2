@@ -21,8 +21,8 @@ module.exports = function(app){
   }
   );
 
-  app.post("/login", passport.authenticate("local", { successRedirect:"/profile",failureRedirect:"/" }),
-    (req,res) => {res.redirect("/profile");}
+  app.post("/login", passport.authenticate("local", { }),
+    (req,res) => {res.send("why arent you working");}
   );
   
   app.post("/add",(req,res) => {
