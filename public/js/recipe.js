@@ -11,6 +11,7 @@ const passwordInput = document.querySelector("#password");
 const loginButton = document.querySelector("#login-button");
 const nameFieldsDiv = document.querySelector(".name");
 const recipeModal = document.querySelector("#recipe-full");
+const recipeCard = document.querySelector('#card-small');
 const receipeList = [];
 const cardWrapperDiv = document.querySelector("#card-wrapper");
 const pantryModal = document.querySelector("#pantry");
@@ -28,14 +29,10 @@ document.addEventListener("DOMContentLoaded", (event) => {
     loginModalInstance.open();
   });
 
-  $(document).on("click","#pantry-modal-button",event => {
+  $(document).on("click", "#pantry-modal-button", event => {
     console.log("clicked");
     pantryModalInstance.open();
   });
-
-  // document.querySelector("#recipe-button").addEventListener("click", (event) => {
-  //   recipeModalInstance.open();
-  // });
 
   loginButton.addEventListener("click", async (event) => {
     const username = usernameInput.value;
@@ -71,13 +68,13 @@ document.addEventListener("DOMContentLoaded", (event) => {
         headers: { "Content-Type": "application/json" }
       })
         .then(res => {
-          
+
           console.log(res);
           createAccountButton.setAttribute("data-clicked", "false");
           nameFieldsDiv.classList.add("hide");
           loginModalInstance.close();
           loginButton.classList.remove("hide");
-          
+
         })
         .catch(err => {
           console.log(err);
@@ -94,7 +91,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     }
   });
 
-  //Searches for recipe and puts results into an array
+  //Searches for recipe and puts results into an array - then calls makeCards function
   searchButton.addEventListener("click", (event) => {
     console.log(searchInput.value);
     fetchRecipes(searchInput.value).then(response => {
@@ -124,18 +121,49 @@ document.addEventListener("DOMContentLoaded", (event) => {
   //create cards for each item in the recipeList
   function makeCards() {
     cardWrapperDiv.innerHTML = ``;
-    for (let i=0; i<recipeList.length; i++) {
+    for (let i = 0; i < recipeList.length; i++) {
       let newCard = document.createElement(`div`);
       newCard.classList.add(`card`);
+      newCard.setAttribute('id', 'card-small');
+      newCard.setAttribute(`data-id`, [i]);
       newCard.innerHTML = `
       <div class="card-image">
           <img src="${recipeList[i].image}">
           <span class="card-title">${recipeList[i].label}</span>
         </div>        
       `;
+      newCard.addEventListener("click", (event) => {
+        console.log(newCard.getAttribute('data-id'));
+        recipeModalInstance.open();
+      })
+
       cardWrapperDiv.append(newCard);
     }
-  }
+  };
+
+  function recipeModal() {
+    for (let i = 0; i < receipeList.length; i++) {
+      let recipeModal = document.createElement(`div`);
+      recipeModal.classList.add(`modal`);
+      recipeModal.setAttribute(`id`, `recipe-full`);
+      recipeModal.setAttribute('dataId', [i]);
+      recipeModal.innerHTML = `
+      
+        <div class="modal-content">
+          <h4>${recipeList[i].label}</h4>
+          <img src="${recipeList[i].image}">
+          <p>${recipeList[i].ingredients}</p>
+          <a href="${recipeList[i].url}">${recipeList[i].source}</a>
+        </div>
+        <div class="modal-footer">
+          <a href="#!" class="modal-close waves-effect waves-green btn-flat">Dismiss</a>
+        </div>
+      
+      `;
+      body.append(recipeModal);
+    }
+  };
+
 });
 
 
