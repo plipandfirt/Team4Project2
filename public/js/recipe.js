@@ -13,17 +13,24 @@ const nameFieldsDiv = document.querySelector(".name");
 const recipeModal = document.querySelector("#recipe-full");
 const receipeList = [];
 const cardWrapperDiv = document.querySelector("#card-wrapper");
+const pantryModal = document.querySelector("#pantry");
+const pantryButton = document.querySelector("#pantry-modal-button");
 
 document.addEventListener("DOMContentLoaded", (event) => {
-  // console.log("recipe.js loaded");
 
   //initialize materialize modals
   const loginModalInstance = M.Modal.init(loginModal);
   const recipeModalInstance = M.Modal.init(recipeModal);
+  const pantryModalInstance = M.Modal.init(pantryModal);
 
   //event listeners
   loginModalButton.addEventListener("click", (event) => {
     loginModalInstance.open();
+  });
+
+  $(document).on("click","#pantry-modal-button",event => {
+    console.log("clicked");
+    pantryModalInstance.open();
   });
 
   // document.querySelector("#recipe-button").addEventListener("click", (event) => {
