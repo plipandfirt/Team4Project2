@@ -13,8 +13,8 @@ module.exports = function(app) {
   });
 
   // Create a new example
-  app.post("/api/examples", async function(req, res) {
-    const data = await db.Example.create(req.body);
+  app.post("/api/recipes", async function(req, res) {
+    const data = await db.recipe_db.create(req.body.pantry-item);
     res.json(data);
   });
 

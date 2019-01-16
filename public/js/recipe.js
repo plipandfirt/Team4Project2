@@ -115,5 +115,15 @@ document.addEventListener("DOMContentLoaded", (event) => {
   function makeCards() {
 
   }
-
 });
+
+
+//pantry modal
+document.addEventListener("DOMContentLoaded", function() {
+  var elemPantry = document.querySelectorAll("#pantry");
+  var instances = M.Modal.init(elemPantry); //,options
+  var instance = M.Modal.getInstance(elemPantry);
+  console.log(instance);
+  instance.open();
+}); 
+

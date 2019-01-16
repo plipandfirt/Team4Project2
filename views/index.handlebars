@@ -28,6 +28,7 @@
         <li>
           <div class="input-field col s6">
             <input placeholder="Search for a recipe..." id="recipe" type="text" class="validate">
+
           </div>
         </li>
         <li><a href="#" id="search"><i class="fas fa-search"></a></i>
@@ -36,7 +37,7 @@
         <li><a id="login-modal-button" href="#">Sign Up/Log in</a></li>
         {{/unless}}
         {{#if user}}
-        <li><a href="#">My Pantry</a></li>
+        <li><a href="#pantry" class="modal-trigger">My Pantry</a></li>
         <li><img src="{{user.image_url}}"></li>
         <li><a href="/auth/logout">Logout</a></li>
         {{/if}}
@@ -80,17 +81,27 @@
           <a href="#!" data-clicked="false" id="create-button" class="waves-effect waves-green btn-flat">Sign Up</a>
         </div>
 
-        {{!-- Delete this button once results section is complete!! --}}
-        {{!-- <button id="recipe-button" class="recipefull modal-trigger" href="#recipe-full">Recipe</button>
-
-        <div id="recipe-full" class="recipefull modal">
-          <div class="modal-content">
-            <h4>{{label}}</h4>
-            <img src="{{image}}">
-            <p>Ingredients:{{ingredients}}</p>
-            <p><a href="{{url}}" target="_blank">{{source}}</a></p>
-          </div>
-        </div> --}}
+<div id="pantry" class="modal">
+                <div class="modal-content">
+                  <h4>My Pantry</h4>
+                  <form action="api/recipes" method="POST">
+                        <div class="row">
+                                <div class="input-field col s12">
+                                  <input id="pantryItem" type="text" class="validate">
+                                  <label for="pantryItem">Pantry Item</label>
+                                </div>
+                                <div class="col s12">
+                                    <button class="right-align btn waves-effect waves-light " type="submit" name="pantry-item">Submit
+                                    </button>
+                                </div>
+                  </form>
+                </div>
+                <!-- pantry modal footer / agreement button -->
+                <div class="modal-footer">
+                  <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+                </div>
+              </div>
+            </div>
   </nav>
 
 </body>
