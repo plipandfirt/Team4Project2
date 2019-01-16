@@ -1,3 +1,4 @@
+/*eslint quotes:0 */
 const searchInput = document.querySelector("#recipe");
 const searchButton = document.querySelector("#search");
 const loginModalButton = document.querySelector("#login-modal-button");
@@ -11,6 +12,7 @@ const loginButton = document.querySelector("#login-button");
 const nameFieldsDiv = document.querySelector(".name");
 const recipeModal = document.querySelector('#recipe-full');
 const receipeList = [];
+const cardWrapperDiv = document.querySelector("#card-wrapper");
 
 document.addEventListener("DOMContentLoaded", (event) => {
   // console.log("recipe.js loaded");
@@ -24,9 +26,9 @@ document.addEventListener("DOMContentLoaded", (event) => {
     loginModalInstance.open();
   });
 
-  document.querySelector("#recipe-button").addEventListener("click", (event) => {
-    recipeModalInstance.open();
-  });
+  // document.querySelector("#recipe-button").addEventListener("click", (event) => {
+  //   recipeModalInstance.open();
+  // });
 
   loginButton.addEventListener("click", async (event) => {
     const username = usernameInput.value;
@@ -88,7 +90,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     console.log(searchInput.value);
     fetchRecipes(searchInput.value).then(response => {
       const recipeList = [];
-      for (i = 0; i < response.data.length; i++) {
+      for (let i = 0; i < response.data.length; i++) {
         let newRecipe = {
           label: response.data[i].recipe.label,
           image: response.data[i].recipe.image,
@@ -99,6 +101,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
         recipeList.push(newRecipe);
       }
       console.log(recipeList);
+      makeCards();
     });
   });
 
@@ -111,7 +114,17 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
   //create cards for each item in the recipeList
   function makeCards() {
-
+    cardWrapperDiv.innerHTML = (``);
+    for (let i=0; i<recipeList.length; i++) {
+      let newCard = document.createElement(`<div class="card">`);
+      newCard.innerHTML = (`
+      <div class="card-image">
+          <img src="${image}">
+          <span class="card-title">${label}</span>
+        </div>        
+      `);
+      cardWrapperDiv.append(newCard);
+    }
   }
 
 });
