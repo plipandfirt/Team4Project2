@@ -9,7 +9,7 @@ const usernameInput = document.querySelector("#username");
 const passwordInput = document.querySelector("#password");
 const loginButton = document.querySelector("#login-button");
 const nameFieldsDiv = document.querySelector(".name");
-const recipeModal = document.querySelector('#recipe-full');
+const recipeModal = document.querySelector("#recipe-full");
 const receipeList = [];
 
 document.addEventListener("DOMContentLoaded", (event) => {
@@ -24,9 +24,9 @@ document.addEventListener("DOMContentLoaded", (event) => {
     loginModalInstance.open();
   });
 
-  document.querySelector("#recipe-button").addEventListener("click", (event) => {
-    recipeModalInstance.open();
-  });
+  // document.querySelector("#recipe-button").addEventListener("click", (event) => {
+  //   recipeModalInstance.open();
+  // });
 
   loginButton.addEventListener("click", async (event) => {
     const username = usernameInput.value;
@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
           ingredients: response.data[i].recipe.ingredients,
           source: response.data[i].recipe.source,
           url: response.data[i].recipe.url
-        }
+        };
         recipeList.push(newRecipe);
       }
       console.log(recipeList);
@@ -118,12 +118,12 @@ document.addEventListener("DOMContentLoaded", (event) => {
 });
 
 
-//pantry modal
-document.addEventListener("DOMContentLoaded", function() {
-  var elemPantry = document.querySelectorAll("#pantry");
-  var instances = M.Modal.init(elemPantry); //,options
-  var instance = M.Modal.getInstance(elemPantry);
-  console.log(instance);
-  instance.open();
-}); 
+// //pantry modal
+// document.addEventListener("DOMContentLoaded", function() {
+//   var elemPantry = document.querySelectorAll("#pantry");
+//   var instances = M.Modal.init(elemPantry); //,options
+//   var instance = M.Modal.getInstance(elemPantry);
+//   console.log(instance);
+//   instance.open();
+// }); 
 
