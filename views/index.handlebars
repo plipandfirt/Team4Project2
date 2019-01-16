@@ -1,7 +1,87 @@
-<div id="home">
-  <div class="container">
-            <!-- pantry modal popup-->
-          <div id="pantry" class="modal">
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+  <!--Font Awesome for Icons -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+    crossorigin="anonymous">
+
+  <link rel="stylesheet" href="/styles/styles.css" media="screen" title="no title" charset="utf-8">
+
+  <title>Cornucopia</title>
+</head>
+
+<body>
+
+  <nav class="orange darken-1">
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo">Cornucopia</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li>
+          <div class="input-field col s6">
+            <input placeholder="Search for a recipe..." id="recipe" type="text" class="validate">
+
+          </div>
+        </li>
+        <li><a href="#" id="search"><i class="fas fa-search"></a></i>
+          {{#unless user}}
+        <li><a href="#">My Pantry</a></li>
+        <li><a id="login-modal-button" href="#">Sign Up/Log in</a></li>
+        {{/unless}}
+        {{#if user}}
+        <li><a href="#pantry" class="modal-trigger">My Pantry</a></li>
+        <li><img src="{{user.image_url}}"></li>
+        <li><a href="/auth/logout">Logout</a></li>
+        {{/if}}
+      </ul>
+    </div>
+    </div>
+    </div>
+    <div id="sign-up" class="signup modal">
+      <div class="modal-content">
+        <h4>Sign up for My Pantry!</h4>
+        <a href="/auth/google" class="modal-close waves-effect waves-green btn-flat">Login Using Google</a>
+
+        <div class="row">
+          <div class="row">
+            <div class="input-field col s6">
+              <input id="username" type="text" class="validate">
+              <label for="username">Username</label>
+            </div>
+
+            <div class="input-field col s6">
+              <input id="password" type="password" class="validate">
+              <label for="password">Password</label>
+            </div>
+          </div>
+
+          <div class="row hide name">
+            <div class="input-field col s12">
+              <input id="first_name" type="text" class="validate">
+              <label for="first_name">First Name</label>
+            </div>
+
+            <div class="input-field col s12">
+              <input id="last_name" type="text" class="validate">
+              <label for="last_name">Last Name</label>
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <a href="#" id="login-button" class="waves-effect waves-green btn-flat">Login</a>
+          <a href="#!" data-clicked="false" id="create-button" class="waves-effect waves-green btn-flat">Sign Up</a>
+        </div>
+
+<div id="pantry" class="modal">
                 <div class="modal-content">
                   <h4>My Pantry</h4>
                   <form action="api/recipes" method="POST">
@@ -22,34 +102,8 @@
                 </div>
               </div>
             </div>
-    <div class="row">
-      <div class="col-8 offset-2">
-        <h1>{{msg}}</h1>
-        <h2>This is our Home Page!</h2>
-        <form class="clearfix mb-4" action="POST">
-          <div class="form-group">
-            <label for="example-text">Example Text</label>
-            <input type="text" id="example-text" class="form-control" aria-describedby="example-text" placeholder="Enter Example Text">
-          </div>
-          <div class="form-group">
-            <label for="example-description">Example Description</label>
-            <textarea class="form-control" id="example-description" aria-describedby="example-description" placeholder="Enter Example Description"></textarea>
-          </div>
-          <button id="submit" class="btn btn-primary float-right">Submit</button>
-        </form>
-        <h3>Examples:</h3>
-        <ul id="example-list" class="list-group">
-          {{#each examples}}
-          <li data-id="{{this.id}}" class="list-group-item">
-            <a href="example/{{this.id}}">{{this.text}}</a>
-            <button class="btn btn-danger float-right delete">ｘ</button>
-          </li>
-          {{/each}}
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
+  </nav>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</body>
 
+</html>
