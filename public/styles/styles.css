@@ -5,3 +5,157 @@
 .hide{
   display: none;
 }
+
+body{
+  background: rgb(209, 209, 209);
+  /* background: linear-gradient(45deg, rgba(132,152,137,1) 7%, rgba(189,255,196,1) 93%); */
+  display: grid;
+  grid-template-columns: 1fr 20%;
+  grid-template-rows: 1fr 70vh 50px;
+  grid-gap: 1em;
+  max-width: 99.8%;
+  padding: 1em;
+  opacity: 1;
+  box-sizing: border-box;
+  justify-content: stretch;
+  align-content: center;
+  grid-template-areas: "header header"
+                       "main aside"
+                       "footer footer"
+}
+
+header{
+  font-family: 'McLaren', cursive;
+  color: white;
+  text-align: center;
+  grid-area: header;
+  min-height: 15em;
+  background: url(../images/main-image.jpg) no-repeat center center fixed;
+  background-size:cover ;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 100px 100px; 
+
+}
+
+h4{
+  color:black;
+}
+
+.header-text {
+  grid-column: 1;
+  align-self: center;
+}
+
+main{
+  background: url(../images/main-image.jpg) no-repeat center center fixed; 
+  background-size: cover;
+  height: 100%;
+  overflow-x: hidden;
+  grid-area: main;
+}
+
+.modal{
+  position: absolute;
+  top: 30%;
+  right: 100px;
+  bottom: 0;
+  left: 0;
+  z-index: 10040;
+  overflow: auto;
+  overflow-y: auto;
+  max-height: 55%;
+  max-width: 50%;;
+}
+
+#search-form{
+  display: grid;
+  grid-template-columns: repeat(3,minmax(85px,1fr));
+  justify-content: center;
+  margin: auto;
+}
+
+.search{
+  grid-column: 1/-1;
+}
+
+.sort label{
+  color: white;
+}
+
+aside {
+  padding: 15px;
+  font-size: 20px;
+  background: beige;
+  text-align: center;
+  font-family: 'McLaren', cursive;
+  grid-area: aside;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-content: start;
+
+  background-size: cover;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+hr{
+  width: 100%;
+}
+
+.id{
+color:black;
+text-align: center;
+
+}
+footer{
+  margin-top: 3px;
+  background: #232323;
+  grid-column: 1 / span 2;
+  color: bisque;
+  font-family: 'McLaren', cursive;
+  text-align: center;
+  padding-top: 13px;
+  grid-area: footer;
+}
+.shadow{
+  box-shadow: -10px 10px 5px rgba(160, 160, 160,.9);
+  border-radius: 5px;
+}
+.shadow-header{
+  box-shadow: -10px 10px 5px rgba(160, 160, 160,.9);
+}
+
+#card-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fill,minmax(15rem,1fr));
+  grid-gap: 1rem;
+  padding: 10px;
+}
+
+.card{
+  background-color: rgba(255,255,255,.5);
+  box-shadow: -10px 10px 5px rgba(100, 100, 100, 0.6);
+  min-width: 10rem;
+  padding: 20px;
+  border-radius: 10%
+}
+
+.card-body{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+}
+
+.card-detail{
+  font-size: 10px;
+}
+
+.card:hover{	
+  background-color: rgba(255,255,255,.9)	
+}
+
+.form-control{
+background-color: black
+}
