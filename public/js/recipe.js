@@ -116,15 +116,16 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
   //create cards for each item in the recipeList
   function makeCards() {
-    cardWrapperDiv.innerHTML = (``);
+    cardWrapperDiv.innerHTML = ``;
     for (let i=0; i<recipeList.length; i++) {
-      let newCard = document.createElement(`div`).classList.add(`card`);
-      newCard.innerHTML = (`
+      let newCard = document.createElement(`div`);
+      newCard.classList.add(`card`);
+      newCard.innerHTML = `
       <div class="card-image">
           <img src="${recipeList[i].image}">
           <span class="card-title">${recipeList[i].label}</span>
         </div>        
-      `);
+      `;
       cardWrapperDiv.append(newCard);
     }
   }
