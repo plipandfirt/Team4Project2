@@ -80,6 +80,27 @@
 
   </nav>
 
+<div id="pantry" class="modal">
+  <div class="modal-content">
+    <h4>My Pantry</h4>
+    <form action="api/pantry" method="POST">
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="pantryItem" type="text" class="validate" name="ingredient">
+        <label for="pantryItem">Pantry Item</label>
+      </div>
+      <div class="col s12">
+        <button class="right-align btn waves-effect waves-light " type="submit">Submit
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <div class="modal-footer">
+    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+  </div>
+</div>
+
 </body>
 
 </html>
