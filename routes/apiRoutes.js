@@ -6,21 +6,16 @@ const appKey = process.env.EDAMAM_RECIPE_APP_KEY;
 
 
 module.exports = function(app) {
-  // Get all examples
-  app.get("/api/examples", async function(req, res) {
-    const data = await db.Example.findAll({});
-    res.json(data);
-  });
-
-  // Create a new example
+  // Create a new pantry item
   app.post("/api/recipes", async function(req, res) {
-    const data = await db.recipe_db.create(req.body.pantry-item);
-    res.json(data);
-  });
-
-  // Delete an example by id
-  app.delete("/api/examples/:id", async function(req, res) {
-    const data = await db.Example.destroy({ where: { id: req.params.id } });
+    console.log(`adding to pantry with user ${req.user}`);
+    
+    // newIngredient hold the form info to add
+    const newIngredient = req.body.pantry.ingredient;
+    console.log(`adding ${newIngredient}`);
+    const data = await db.pantry.create({
+      ingredient: newIngredient
+    });
     res.json(data);
   });
 
