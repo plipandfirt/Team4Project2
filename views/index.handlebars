@@ -33,11 +33,11 @@
         </li>
         <li><a href="#" id="search"><i class="fas fa-search"></a></i>
         {{#unless user}}
-          <li><a href="#">My Pantry</a></li>
+          <li><a id="pantry-modal-button" href="#">My Pantry</a></li>
           <li><a id="login-modal-button" href="#">Sign Up/Log in</a></li>
         {{/unless}}
         {{#if user}}
-          <li><a href="#" id="pantry-modal-button">My Pantry</a></li>
+          <li><a id="pantry-modal-button" href="#">My Pantry</a></li>
           <li><img src="{{user.image_url}}"></li>
           <li><a href="/auth/logout">Logout</a></li>
         {{/if}}
