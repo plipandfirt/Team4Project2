@@ -29,6 +29,10 @@ document.addEventListener("DOMContentLoaded", (event) => {
     loginModalInstance.open();
   });
 
+  document.addEventListener("click", (event) => {
+    console.log(event.target.dataset.id);
+  });
+
   $(document).on("click", "#pantry-modal-button", event => {
     console.log("clicked");
     pantryModalInstance.open();
@@ -132,17 +136,13 @@ document.addEventListener("DOMContentLoaded", (event) => {
           <span class="card-title">${recipeList[i].label}</span>
         </div>        
       `;
-      newCard.addEventListener("click", (event) => {
-        console.log(newCard.getAttribute('data-id'));
-        recipeModalInstance.open();
-      })
-
       cardWrapperDiv.append(newCard);
+      
     }
   };
 
   function recipeModal() {
-    for (let i = 0; i < receipeList.length; i++) {
+    for (let i = 0; i < recipeList.length; i++) {
       let recipeModal = document.createElement(`div`);
       recipeModal.classList.add(`modal`);
       recipeModal.setAttribute(`id`, `recipe-full`);
@@ -158,9 +158,9 @@ document.addEventListener("DOMContentLoaded", (event) => {
         <div class="modal-footer">
           <a href="#!" class="modal-close waves-effect waves-green btn-flat">Dismiss</a>
         </div>
-      
       `;
-      body.append(recipeModal);
+      document.body.appendChild(recipeModal);
+      console.log('worked');
     }
   };
 
