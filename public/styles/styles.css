@@ -8,6 +8,7 @@
 
 body{
   background: rgb(209, 209, 209);
+  background: url(../images/main-image.jpg) no-repeat center center fixed; 
   /* background: linear-gradient(45deg, rgba(132,152,137,1) 7%, rgba(189,255,196,1) 93%); */
   display: grid;
   grid-template-columns: 1fr;
