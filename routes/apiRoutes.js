@@ -28,6 +28,5 @@ module.exports = function(app) {
     console.log(`Found ${results.length} results`);
     console.log({data:results});
     res.json({data:results});
-    // res.send(JSON.stringify(results));
   });
 };

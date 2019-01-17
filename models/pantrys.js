@@ -18,7 +18,7 @@ module.exports = function (sequelize,DataTypes) {
   });
 
   Pantry.associate = function(models){
-    Pantry.belongsTo(models.users,{
+    Pantry.belongsTo(models.user,{
       foreignKey:{
         allowNull:false
       }
