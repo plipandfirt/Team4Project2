@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
   });
 
   cardWrapperDiv.addEventListener("click", (event) => {
-    if (event.target && event.target.matches(".card-image")){
+    if (event.target && event.target.matches(".card-image")|| event.target.matches(".card")){
       console.log(event.target.dataset.id);
       modalID = event.target.dataset.id;
       recipeModalInit = document.querySelector(`#recipe-full${modalID}`);
@@ -162,7 +162,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
           <h4>${recipeList[i].label}</h4>
           <img src="${recipeList[i].image}">
           <p>${recipeList[i].ingredients}</p>
-          <a href="${recipeList[i].url}">${recipeList[i].source}</a>
+          <a href="${recipeList[i].url}" target="_blank">${recipeList[i].source}</a>
         </div>
         <div class="modal-footer">
           <a href="#!" class="modal-close waves-effect waves-green btn-flat">Dismiss</a>
