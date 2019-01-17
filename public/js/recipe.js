@@ -19,14 +19,21 @@ const pantryButton = document.querySelector("#pantry-modal-button");
 
 document.addEventListener("DOMContentLoaded", (event) => {
 
-  //initialize materialize modals
+  // Initialize materialize modals
   const loginModalInstance = M.Modal.init(loginModal);
   const recipeModalInstance = M.Modal.init(recipeModal);
   const pantryModalInstance = M.Modal.init(pantryModal);
 
-  //event listeners
-  loginModalButton.addEventListener("click", (event) => {
-    loginModalInstance.open();
+  //Define Event listeners
+
+  document.querySelector("#nav-mobile").addEventListener("click", event => {
+    if(event.target && event.target.matches("#login-modal-button")){
+      loginModalInstance.open();
+    }
+
+    if(event.target && event.target.matches("#pantry-modal-button")){
+      pantryModalInstance.open();
+    }
   });
 
   cardWrapperDiv.addEventListener("click", (event) => {
@@ -34,12 +41,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
       console.log("clicked");
       recipeModalInstance.open();
     }
-  });
-
-
-  $(document).on("click", "#pantry-modal-button", event => {
-    console.log("clicked");
-    pantryModalInstance.open();
   });
 
   loginButton.addEventListener("click", async (event) => {

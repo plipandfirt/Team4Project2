@@ -14,13 +14,13 @@ module.exports = function (sequelize,DataTypes) {
       validate:{
         min:0
       }
-    }
-  });
+    },
+  },{freezeTableName:true});
 
   Pantry.associate = function(models){
     Pantry.belongsTo(models.user,{
       foreignKey:{
-        allowNull:false
+        allowNull:true
       }
     });
   };
