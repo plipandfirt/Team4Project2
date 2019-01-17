@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     loginModalInstance.open();
   });
 
-  document.addEventListener("click", (event) => {
+  recipeCard.addEventListener("click", (event) => {
     console.log(event.target.dataset.id);
   });
 
