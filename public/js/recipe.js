@@ -11,7 +11,7 @@ const passwordInput = document.querySelector("#password");
 const loginButton = document.querySelector("#login-button");
 const nameFieldsDiv = document.querySelector(".name");
 const recipeModal = document.querySelector("#recipe-full");
-const recipeCard = document.querySelector('#card-small');
+const recipeCard = document.querySelector("#card-small");
 const receipeList = [];
 const cardWrapperDiv = document.querySelector("#card-wrapper");
 const pantryModal = document.querySelector("#pantry");
@@ -29,9 +29,13 @@ document.addEventListener("DOMContentLoaded", (event) => {
     loginModalInstance.open();
   });
 
-  recipeCard.addEventListener("click", (event) => {
-    console.log(event.target.dataset.id);
+  cardWrapperDiv.addEventListener("click", (event) => {
+    if (event.target && event.target.matches("#card-small")){
+      console.log("clicked");
+      recipeModalInstance.open();
+    }
   });
+
 
   $(document).on("click", "#pantry-modal-button", event => {
     console.log("clicked");
@@ -139,6 +143,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
       cardWrapperDiv.append(newCard);
       
     }
+    recipeModal();
   };
 
   function recipeModal() {
@@ -146,7 +151,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
       let recipeModal = document.createElement(`div`);
       recipeModal.classList.add(`modal`);
       recipeModal.setAttribute(`id`, `recipe-full`);
-      recipeModal.setAttribute('dataId', [i]);
+      recipeModal.setAttribute('data-id', [i]);
       recipeModal.innerHTML = `
       
         <div class="modal-content">
