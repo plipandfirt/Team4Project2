@@ -10,18 +10,19 @@ const usernameInput = document.querySelector("#username");
 const passwordInput = document.querySelector("#password");
 const loginButton = document.querySelector("#login-button");
 const nameFieldsDiv = document.querySelector(".name");
-const recipeModal = document.querySelector("#recipe-full");
-const recipeCard = document.querySelector("#card-small");
-const receipeList = [];
+let recipeModalInit;
+const recipeCard = document.querySelector(".card-image");
+let recipeList = [];
 const cardWrapperDiv = document.querySelector("#card-wrapper");
 const pantryModal = document.querySelector("#pantry");
 const pantryButton = document.querySelector("#pantry-modal-button");
+let modalID;
 
 document.addEventListener("DOMContentLoaded", (event) => {
 
   // Initialize materialize modals
   const loginModalInstance = M.Modal.init(loginModal);
-  const recipeModalInstance = M.Modal.init(recipeModal);
+  let recipeModalInstance;
   const pantryModalInstance = M.Modal.init(pantryModal);
 
   //Define Event listeners
@@ -37,8 +38,11 @@ document.addEventListener("DOMContentLoaded", (event) => {
   });
 
   cardWrapperDiv.addEventListener("click", (event) => {
-    if (event.target && event.target.matches("#card-small")){
-      console.log("clicked");
+    if (event.target && event.target.matches(".card-image")){
+      console.log(event.target.dataset.id);
+      modalID = event.target.dataset.id;
+      recipeModalInit = document.querySelector(`#recipe-full${modalID}`);
+      recipeModalInstance = M.Modal.init(recipeModalInit);
       recipeModalInstance.open();
     }
   });
@@ -133,7 +137,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
     for (let i = 0; i < recipeList.length; i++) {
       let newCard = document.createElement(`div`);
       newCard.classList.add(`card`);
-      newCard.setAttribute('id', 'card-small');
       newCard.setAttribute(`data-id`, [i]);
       newCard.innerHTML = `
       <div class="card-image">
@@ -151,7 +154,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     for (let i = 0; i < recipeList.length; i++) {
       let recipeModal = document.createElement(`div`);
       recipeModal.classList.add(`modal`);
-      recipeModal.setAttribute(`id`, `recipe-full`);
+      recipeModal.setAttribute(`id`, `recipe-full${i}`);
       recipeModal.setAttribute('data-id', [i]);
       recipeModal.innerHTML = `
       
