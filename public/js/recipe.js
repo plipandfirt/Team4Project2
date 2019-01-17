@@ -10,17 +10,20 @@ const usernameInput = document.querySelector("#username");
 const passwordInput = document.querySelector("#password");
 const loginButton = document.querySelector("#login-button");
 const nameFieldsDiv = document.querySelector(".name");
-const recipeModal = document.querySelector("#recipe-full");
-const receipeList = [];
+let recipeModalInit;
+const recipeCard = document.querySelector(".card-image");
+let recipeList = [];
 const cardWrapperDiv = document.querySelector("#card-wrapper");
 const pantryModal = document.querySelector("#pantry");
 const pantryButton = document.querySelector("#pantry-modal-button");
+let modalID;
+let ingredientsList;
 
 document.addEventListener("DOMContentLoaded", (event) => {
 
   // Initialize materialize modals
   const loginModalInstance = M.Modal.init(loginModal);
-  const recipeModalInstance = M.Modal.init(recipeModal);
+  let recipeModalInstance;
   const pantryModalInstance = M.Modal.init(pantryModal);
 
   //Define Event listeners
@@ -35,9 +38,16 @@ document.addEventListener("DOMContentLoaded", (event) => {
     }
   });
 
-  // document.querySelector("#recipe-button").addEventListener("click", (event) => {
-  //   recipeModalInstance.open();
-  // });
+  cardWrapperDiv.addEventListener("click", (event) => {
+    if (event.target && event.target.matches(".card-image")|| event.target.matches(".card")){
+      console.log(event.target.dataset.id);
+      recipeModal();
+      modalID = event.target.dataset.id;
+      recipeModalInit = document.querySelector(`#recipe-full${modalID}`);
+      recipeModalInstance = M.Modal.init(recipeModalInit);
+      recipeModalInstance.open();
+    }
+  });
 
   loginButton.addEventListener("click", async (event) => {
     const username = usernameInput.value;
@@ -73,13 +83,13 @@ document.addEventListener("DOMContentLoaded", (event) => {
         headers: { "Content-Type": "application/json" }
       })
         .then(res => {
-          
+
           console.log(res);
           createAccountButton.setAttribute("data-clicked", "false");
           nameFieldsDiv.classList.add("hide");
           loginModalInstance.close();
           loginButton.classList.remove("hide");
-          
+
         })
         .catch(err => {
           console.log(err);
@@ -96,7 +106,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     }
   });
 
-  //Searches for recipe and puts results into an array
+  //Searches for recipe and puts results into an array - then calls makeCards function
   searchButton.addEventListener("click", (event) => {
     console.log(searchInput.value);
     fetchRecipes(searchInput.value).then(response => {
@@ -126,9 +136,10 @@ document.addEventListener("DOMContentLoaded", (event) => {
   //create cards for each item in the recipeList
   function makeCards() {
     cardWrapperDiv.innerHTML = ``;
-    for (let i=0; i<recipeList.length; i++) {
+    for (let i = 0; i < recipeList.length; i++) {
       let newCard = document.createElement(`div`);
       newCard.classList.add(`card`);
+      newCard.setAttribute(`data-id`, [i]);
       newCard.innerHTML = `
       <div class="card-image">
           <img src="${recipeList[i].image}">
@@ -136,8 +147,44 @@ document.addEventListener("DOMContentLoaded", (event) => {
         </div>        
       `;
       cardWrapperDiv.append(newCard);
+      
     }
+    
+  };
+
+  function recipeModal() {
+    for (let i = 0; i < recipeList.length; i++) {
+      
+      for (let j = 0; j <recipeList[i].ingredients.length; j++) {
+        ingredientsList = recipeList[i].ingredients[j].text;
+        console.log(ingredientsList);
+        let ingredientsDisplay = document.createElement(`ul`);
+        ingredientsDisplay.innerHTML = `
+        <li>${ingredientsList}</li>`;
+
+      }
+      let recipeModal = document.createElement(`div`);
+      recipeModal.classList.add(`modal`);
+      recipeModal.setAttribute(`id`, `recipe-full${i}`);
+      recipeModal.setAttribute('data-id', [i]);
+      recipeModal.innerHTML = `
+      
+        <div class="modal-content">
+          <h4>${recipeList[i].label}</h4>
+          <img src="${recipeList[i].image}">
+          <p id="list">${ingredientsList}</p>
+          <a href="${recipeList[i].url}" target="_blank">${recipeList[i].source}</a>
+        </div>
+        <div class="modal-footer">
+          <a href="#!" class="modal-close waves-effect waves-green btn-flat">Dismiss</a>
+        </div>
+      `;
+      document.body.appendChild(recipeModal);
+      console.log('worked');
+    
   }
+  };
+
 });
 
 
