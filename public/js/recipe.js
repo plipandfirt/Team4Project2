@@ -41,6 +41,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
   cardWrapperDiv.addEventListener("click", (event) => {
     if (event.target && event.target.matches(".card-image")|| event.target.matches(".card")){
       console.log(event.target.dataset.id);
+      recipeModal();
       modalID = event.target.dataset.id;
       recipeModalInit = document.querySelector(`#recipe-full${modalID}`);
       recipeModalInstance = M.Modal.init(recipeModalInit);
@@ -148,16 +149,19 @@ document.addEventListener("DOMContentLoaded", (event) => {
       cardWrapperDiv.append(newCard);
       
     }
-    recipeModal();
+    
   };
 
   function recipeModal() {
     for (let i = 0; i < recipeList.length; i++) {
+      
       for (let j = 0; j <recipeList[i].ingredients.length; j++) {
         ingredientsList = recipeList[i].ingredients[j].text;
         console.log(ingredientsList);
         let ingredientsDisplay = document.createElement(`ul`);
-        ingredientsDisplay
+        ingredientsDisplay.innerHTML = `
+        <li>${ingredientsList}</li>`;
+
       }
       let recipeModal = document.createElement(`div`);
       recipeModal.classList.add(`modal`);
@@ -168,7 +172,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
         <div class="modal-content">
           <h4>${recipeList[i].label}</h4>
           <img src="${recipeList[i].image}">
-          <p>${ingredientsList}</p>
+          <p id="list">${ingredientsList}</p>
           <a href="${recipeList[i].url}" target="_blank">${recipeList[i].source}</a>
         </div>
         <div class="modal-footer">
