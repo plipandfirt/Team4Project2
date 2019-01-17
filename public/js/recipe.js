@@ -17,6 +17,7 @@ const cardWrapperDiv = document.querySelector("#card-wrapper");
 const pantryModal = document.querySelector("#pantry");
 const pantryButton = document.querySelector("#pantry-modal-button");
 let modalID;
+let ingredientsList;
 
 document.addEventListener("DOMContentLoaded", (event) => {
 
@@ -152,6 +153,12 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
   function recipeModal() {
     for (let i = 0; i < recipeList.length; i++) {
+      for (let j = 0; j <recipeList[i].ingredients.length; j++) {
+        ingredientsList = recipeList[i].ingredients[j].text;
+        console.log(ingredientsList);
+        let ingredientsDisplay = document.createElement(`ul`);
+        ingredientsDisplay
+      }
       let recipeModal = document.createElement(`div`);
       recipeModal.classList.add(`modal`);
       recipeModal.setAttribute(`id`, `recipe-full${i}`);
@@ -161,7 +168,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
         <div class="modal-content">
           <h4>${recipeList[i].label}</h4>
           <img src="${recipeList[i].image}">
-          <p>${recipeList[i].ingredients}</p>
+          <p>${ingredientsList}</p>
           <a href="${recipeList[i].url}" target="_blank">${recipeList[i].source}</a>
         </div>
         <div class="modal-footer">
@@ -170,7 +177,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
       `;
       document.body.appendChild(recipeModal);
       console.log('worked');
-    }
+    
+  }
   };
 
 });
