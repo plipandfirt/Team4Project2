@@ -33,7 +33,7 @@
         </li>
         <li><a href="#" id="search"><i class="fas fa-search"></a></i>
         {{#unless user}}
-          <li><a id="pantry-modal-button" href="#">My Pantry</a></li>
+          <li><a href="#">My Pantry</a></li>
           <li><a id="login-modal-button" href="#">Sign Up/Log in</a></li>
         {{/unless}}
         {{#if user}}
@@ -90,7 +90,7 @@
 <div id="pantry" class="modal">
   <div class="modal-content">
     <h4>My Pantry</h4>
-    <form action="api/recipes" method="POST">
+    <form action="api/pantry" method="POST">
     <div class="row">
       <div class="input-field col s12">
         <input id="pantryItem" type="text" class="validate" name="ingredient">
