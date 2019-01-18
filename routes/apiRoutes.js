@@ -20,6 +20,10 @@ module.exports = function(app) {
     res.json(data);
   });
 
+  // app.get("/api/pantry", async function(req,res) {
+
+  // });
+
   app.get("/api/recipes/:query", async function(req,res){
     const search = req.params.query;
     console.log(search);

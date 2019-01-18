@@ -34,12 +34,15 @@ document.addEventListener("DOMContentLoaded", (event) => {
     }
 
     if(event.target && event.target.matches("#pantry-modal-button")){
+      console.log("clicked");
       pantryModalInstance.open();
     }
   });
 
   cardWrapperDiv.addEventListener("click", (event) => {
-    if (event.target && event.target.matches(".card-image")|| event.target.matches(".card")){
+    console.log(`outside: ${event.target}`);
+    if (event.target && (event.target.matches(".card-image") || event.target.matches(".card"))){
+      console.log(event.target);
       console.log(event.target.dataset.id);
       recipeModal();
       modalID = event.target.dataset.id;
@@ -150,7 +153,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
       
     }
     
-  };
+  }
 
   function recipeModal() {
     for (let i = 0; i < recipeList.length; i++) {
@@ -182,18 +185,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
       document.body.appendChild(recipeModal);
       console.log('worked');
     
+    }
   }
-  };
 
 });
-
-
-// //pantry modal
-// document.addEventListener("DOMContentLoaded", function() {
-//   var elemPantry = document.querySelectorAll("#pantry");
-//   var instances = M.Modal.init(elemPantry); //,options
-//   var instance = M.Modal.getInstance(elemPantry);
-//   console.log(instance);
-//   instance.open();
-// }); 
-

@@ -39,8 +39,18 @@
         {{/if}}
       </ul>
     </div>
-  </div>
+  </nav>
+
+  {{!-- Add pantry search boxes here if logged in --}}
+  {{#if user}}
+
+  {{/if}}
+
+{{!-- Search results populate in card-wrapper --}}
+<div id="card-wrapper">
+
 </div>
+  
 <div id="sign-up" class="signup modal">
     <div class="modal-content">
       <h4>Sign up for My Pantry!</h4>
@@ -77,13 +87,8 @@
       <a href="#!" data-clicked="false" id="create-button" class="waves-effect waves-green btn-flat">Sign Up</a>
     </div>
   </div>
-
-  </nav>
-
-<div id="card-wrapper">
-
 </div>
-  
+
 <div id="pantry" class="modal">
   <div class="modal-content">
     <h4>My Pantry</h4>
