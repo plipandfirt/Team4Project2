@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
   });
 
   cardWrapperDiv.addEventListener("click", (event) => {
-    if (event.target && event.target.matches(".card-image") || event.target.matches(".card")) {
+    if (event.target && event.target.matches(".card")) {
       console.log(event.target.dataset.id);
       modalID = event.target.dataset.id;
       recipeModal(modalID);
@@ -145,9 +145,10 @@ document.addEventListener("DOMContentLoaded", (event) => {
       let newCard = document.createElement(`div`);
       newCard.classList.add(`card`);
       newCard.setAttribute(`data-id`, [i]);
+      newCard.setAttribute(`style`, `background-image: url(${recipeList[i].image}); background-position: center;`);
+
       newCard.innerHTML = `
-      <div class="card-image">
-          <img src="${recipeList[i].image}">
+      <div >
           <span class="card-title">${recipeList[i].label}</span>
         </div>        
       `;
@@ -171,14 +172,15 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
       let recipeModal = document.createElement(`div`);
       recipeModal.classList.add(`modal`);
+      recipeModal.classList.add(`recipe-detail`);
       recipeModal.setAttribute(`id`, `recipe-full${i}`);
       recipeModal.setAttribute('data-id', [i]);
       recipeModal.innerHTML = `
-      
+
         <div class="modal-content">
           <h4>${recipeList[i].label}</h4>
           <img src="${recipeList[i].image}">
-          <p ><ul>${ingredientArr.join("")}</ul></p>
+          <p><ul>${ingredientArr.join("")}</ul></p>
           <a href="${recipeList[i].url}" target="_blank">${recipeList[i].source}</a>
         </div>
         <div class="modal-footer">

@@ -128,6 +128,12 @@ footer{
   border-radius: 10%
 }
 
+.card-title {
+  font-weight: 400px;
+  color: white;
+  text-shadow: 1px 1px 1px black;
+}
+
 .card-body{
   display: grid;
   grid-template-columns: 1fr 1fr;
