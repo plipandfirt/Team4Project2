@@ -42,7 +42,7 @@ main{
   grid-area: main;
 }
 
-.modal{
+/* .modal{
   position: absolute;
   top: 30%;
   right: 100px;
@@ -53,6 +53,33 @@ main{
   overflow-y: auto;
   max-height: 55%;
   max-width: 50%;;
+} */
+
+.recipe-detail {
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+}
+
+.modal-header {
+  grid-column: 1 / span 2;
+  margin:auto;
+}
+
+.modal-img {
+  grid-column: 1 / span 1;
+  grid-row: 2 / span 2;
+  margin: auto;
+}
+
+.modal-text {
+  grid-column: 2 / span 1;
+  grid-row: 2 / span 1;
+}
+
+.modal-src {
+  grid-column: 2 / span 1;
+  grid-row: 3 / span 1;
 }
 
 #search-form{
@@ -147,6 +174,7 @@ footer{
 .card:hover{	
   background-color: rgba(255,255,255,.9)	
 }
+
 
 .form-control{
 background-color: black

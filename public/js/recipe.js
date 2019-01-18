@@ -159,38 +159,34 @@ document.addEventListener("DOMContentLoaded", (event) => {
   };
   //creates detail view modals for each result - currently persists after a new search
   function recipeModal(id) {
-    for (let i = 0; i < recipeList.length; i++) {
+    modalWrapperDiv.innerHTML = ``;
+    ingredientArr = [];
+    for (let j = 0; j < recipeList[id].ingredients.length; j++) {
+      ingredientsList = recipeList[id].ingredients[j].text;
+      ingredientsDisplay = `
+      <li>${ingredientsList}</li>`;
 
-      ingredientArr = [];
-      for (let j = 0; j < recipeList[i].ingredients.length; j++) {
-        ingredientsList = recipeList[i].ingredients[j].text;
-        ingredientsDisplay = `
-        <li>${ingredientsList}</li>`;
-
-        ingredientArr.push(ingredientsDisplay);
-      }
-
-      let recipeModal = document.createElement(`div`);
-      recipeModal.classList.add(`modal`);
-      recipeModal.classList.add(`recipe-detail`);
-      recipeModal.setAttribute(`id`, `recipe-full${i}`);
-      recipeModal.setAttribute('data-id', [i]);
-      recipeModal.innerHTML = `
-
-        <div class="modal-content">
-          <h4>${recipeList[i].label}</h4>
-          <img src="${recipeList[i].image}">
-          <p><ul>${ingredientArr.join("")}</ul></p>
-          <a href="${recipeList[i].url}" target="_blank">${recipeList[i].source}</a>
-        </div>
-        <div class="modal-footer">
-          <a href="#!" class="modal-close waves-effect waves-green btn-flat">Dismiss</a>
-        </div>
-      `;
-      modalWrapperDiv.append(recipeModal);
-      console.log('worked');
-
+      ingredientArr.push(ingredientsDisplay);
     }
+
+    let recipeModal = document.createElement(`div`);
+    recipeModal.classList.add(`modal`);
+    recipeModal.setAttribute(`id`, `recipe-full${id}`);
+    recipeModal.setAttribute('data-id', [id]);
+    recipeModal.innerHTML = `
+    
+      <div class="modal-content recipe-detail">
+        <h4 class="modal-header">${recipeList[id].label}</h4>
+        <img class="modal-img" src="${recipeList[id].image}">
+        <ul class="modal-text">${ingredientArr.join("")}</ul>
+        <a class="modal-src" href="${recipeList[id].url}" target="_blank">Source: ${recipeList[id].source}</a>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Dismiss</a>
+      </div>
+    `;
+    modalWrapperDiv.append(recipeModal);
+    console.log('worked');
   }
 
 });
