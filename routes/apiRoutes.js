@@ -20,6 +20,15 @@ module.exports = function(app) {
     res.json(data);
   });
 
+  // app.get("/profile", async function(req,res) {
+  //   const data = await db.pantry.findAll({
+  //     where:{
+  //       userId:req.user.id
+  //     }
+  //   });
+  //   console.log(data);
+  // });
+
   app.get("/api/recipes/:query", async function(req,res){
     const search = req.params.query;
     console.log(search);
