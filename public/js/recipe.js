@@ -1,4 +1,5 @@
 /*eslint quotes:0 */
+/*eslint linebreak-style:0 */
 const searchInput = document.querySelector("#recipe");
 const searchButton = document.querySelector("#search");
 const loginModalButton = document.querySelector("#login-modal-button");
@@ -31,17 +32,17 @@ document.addEventListener("DOMContentLoaded", (event) => {
   //Define Event listeners
 
   document.querySelector("#nav-mobile").addEventListener("click", event => {
-    if(event.target && event.target.matches("#login-modal-button")){
+    if (event.target && event.target.matches("#login-modal-button")) {
       loginModalInstance.open();
     }
 
-    if(event.target && event.target.matches("#pantry-modal-button")){
+    if (event.target && event.target.matches("#pantry-modal-button")) {
       pantryModalInstance.open();
     }
   });
 
   cardWrapperDiv.addEventListener("click", (event) => {
-    if (event.target && event.target.matches(".card-image")|| event.target.matches(".card")){
+    if (event.target && event.target.matches(".card-image") || event.target.matches(".card")) {
       console.log(event.target.dataset.id);
       recipeModal();
       modalID = event.target.dataset.id;
@@ -149,24 +150,24 @@ document.addEventListener("DOMContentLoaded", (event) => {
         </div>        
       `;
       cardWrapperDiv.append(newCard);
-      
+
     }
-    
+
   };
   //creates detail view modals for each result - currently persists after a new search
   function recipeModal() {
     for (let i = 0; i < recipeList.length; i++) {
-      
+
       ingredientArr = [];
-      for (let j = 0; j <recipeList[i].ingredients.length; j++) {
+      for (let j = 0; j < recipeList[i].ingredients.length; j++) {
         ingredientsList = recipeList[i].ingredients[j].text;
         console.log(ingredientsList);
         ingredientsDisplay = `
         <li>${ingredientsList}</li>`;
 
         ingredientArr.push(ingredientsDisplay);
-      console.log(ingredientArr);
-      };
+        console.log(ingredientArr);
+      }
 
       let recipeModal = document.createElement(`div`);
       recipeModal.classList.add(`modal`);
@@ -186,19 +187,10 @@ document.addEventListener("DOMContentLoaded", (event) => {
       `;
       document.body.appendChild(recipeModal);
       console.log('worked');
-    
+
+    }
   }
-  };
 
 });
 
-
-// //pantry modal
-// document.addEventListener("DOMContentLoaded", function() {
-//   var elemPantry = document.querySelectorAll("#pantry");
-//   var instances = M.Modal.init(elemPantry); //,options
-//   var instance = M.Modal.getInstance(elemPantry);
-//   console.log(instance);
-//   instance.open();
-// }); 
 
