@@ -16,6 +16,7 @@ const recipeCard = document.querySelector(".card-image");
 let recipeList = [];
 let ingredientArr = [];
 const cardWrapperDiv = document.querySelector("#card-wrapper");
+const modalWrapperDiv = document.querySelector("#modal-wrapper");
 const pantryModal = document.querySelector("#pantry");
 const pantryButton = document.querySelector("#pantry-modal-button");
 let modalID;
@@ -44,8 +45,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
   cardWrapperDiv.addEventListener("click", (event) => {
     if (event.target && event.target.matches(".card-image") || event.target.matches(".card")) {
       console.log(event.target.dataset.id);
-      recipeModal();
       modalID = event.target.dataset.id;
+      recipeModal(modalID);
       recipeModalInit = document.querySelector(`#recipe-full${modalID}`);
       recipeModalInstance = M.Modal.init(recipeModalInit);
       recipeModalInstance.open();
@@ -111,6 +112,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
   //Searches for recipe and puts results into an array - then calls makeCards function
   searchButton.addEventListener("click", (event) => {
+    modalWrapperDiv.innerHTML = ``;
     console.log(searchInput.value);
     fetchRecipes(searchInput.value).then(response => {
       recipeList = [];
@@ -155,18 +157,16 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
   };
   //creates detail view modals for each result - currently persists after a new search
-  function recipeModal() {
+  function recipeModal(id) {
     for (let i = 0; i < recipeList.length; i++) {
 
       ingredientArr = [];
       for (let j = 0; j < recipeList[i].ingredients.length; j++) {
         ingredientsList = recipeList[i].ingredients[j].text;
-        console.log(ingredientsList);
         ingredientsDisplay = `
         <li>${ingredientsList}</li>`;
 
         ingredientArr.push(ingredientsDisplay);
-        console.log(ingredientArr);
       }
 
       let recipeModal = document.createElement(`div`);
@@ -185,7 +185,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
           <a href="#!" class="modal-close waves-effect waves-green btn-flat">Dismiss</a>
         </div>
       `;
-      document.body.appendChild(recipeModal);
+      modalWrapperDiv.append(recipeModal);
       console.log('worked');
 
     }
