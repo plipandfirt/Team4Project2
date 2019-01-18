@@ -13,11 +13,13 @@ const nameFieldsDiv = document.querySelector(".name");
 let recipeModalInit;
 const recipeCard = document.querySelector(".card-image");
 let recipeList = [];
+let ingredientArr = [];
 const cardWrapperDiv = document.querySelector("#card-wrapper");
 const pantryModal = document.querySelector("#pantry");
 const pantryButton = document.querySelector("#pantry-modal-button");
 let modalID;
 let ingredientsList;
+let ingredientsDisplay;
 
 document.addEventListener("DOMContentLoaded", (event) => {
 
@@ -34,15 +36,12 @@ document.addEventListener("DOMContentLoaded", (event) => {
     }
 
     if(event.target && event.target.matches("#pantry-modal-button")){
-      console.log("clicked");
       pantryModalInstance.open();
     }
   });
 
   cardWrapperDiv.addEventListener("click", (event) => {
-    console.log(`outside: ${event.target}`);
-    if (event.target && (event.target.matches(".card-image") || event.target.matches(".card"))){
-      console.log(event.target);
+    if (event.target && event.target.matches(".card-image")|| event.target.matches(".card")){
       console.log(event.target.dataset.id);
       recipeModal();
       modalID = event.target.dataset.id;
@@ -153,19 +152,22 @@ document.addEventListener("DOMContentLoaded", (event) => {
       
     }
     
-  }
-
+  };
+  //creates detail view modals for each result - currently persists after a new search
   function recipeModal() {
     for (let i = 0; i < recipeList.length; i++) {
       
+      ingredientArr = [];
       for (let j = 0; j <recipeList[i].ingredients.length; j++) {
         ingredientsList = recipeList[i].ingredients[j].text;
         console.log(ingredientsList);
-        let ingredientsDisplay = document.createElement(`ul`);
-        ingredientsDisplay.innerHTML = `
+        ingredientsDisplay = `
         <li>${ingredientsList}</li>`;
 
-      }
+        ingredientArr.push(ingredientsDisplay);
+      console.log(ingredientArr);
+      };
+
       let recipeModal = document.createElement(`div`);
       recipeModal.classList.add(`modal`);
       recipeModal.setAttribute(`id`, `recipe-full${i}`);
@@ -175,7 +177,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
         <div class="modal-content">
           <h4>${recipeList[i].label}</h4>
           <img src="${recipeList[i].image}">
-          <p id="list">${ingredientsList}</p>
+          <p ><ul>${ingredientArr.join("")}</ul></p>
           <a href="${recipeList[i].url}" target="_blank">${recipeList[i].source}</a>
         </div>
         <div class="modal-footer">
@@ -185,7 +187,19 @@ document.addEventListener("DOMContentLoaded", (event) => {
       document.body.appendChild(recipeModal);
       console.log('worked');
     
-    }
   }
+  };
 
 });
+
+
+// //pantry modal
+// document.addEventListener("DOMContentLoaded", function() {
+//   var elemPantry = document.querySelectorAll("#pantry");
+//   var instances = M.Modal.init(elemPantry); //,options
+//   var instance = M.Modal.getInstance(elemPantry);
+//   console.log(instance);
+//   instance.open();
+// }); 
+
+
