@@ -20,8 +20,13 @@ module.exports = function(app) {
     res.json(data);
   });
 
-  // app.get("/api/pantry", async function(req,res) {
-
+  // app.get("/profile", async function(req,res) {
+  //   const data = await db.pantry.findAll({
+  //     where:{
+  //       userId:req.user.id
+  //     }
+  //   });
+  //   console.log(data);
   // });
 
   app.get("/api/recipes/:query", async function(req,res){

@@ -43,7 +43,11 @@
 
   {{!-- Add pantry search boxes here if logged in --}}
   {{#if user}}
-
+  <ul>
+    {{#each pantry}}
+      <li>{{ingredient}}</li>    
+    {{/each}}
+  </ul>
   {{/if}}
 
 {{!-- Search results populate in card-wrapper --}}
