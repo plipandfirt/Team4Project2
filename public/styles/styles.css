@@ -67,6 +67,10 @@ main{
   margin:auto;
 }
 
+.modal .modal-footer {
+  background-color: #ffe0b2;
+}
+
 .modal-img {
   grid-column: 1 / span 1;
   grid-row: 2 / span 2;
