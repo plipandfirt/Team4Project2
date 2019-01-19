@@ -187,7 +187,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     modalWrapperDiv.innerHTML = ``;
     ingredientArr = [];
 
-    // create an array of node items
+    // create an array of node items from the pantry checkboxes
     userPantry = Array.prototype.slice.call(pantryItems);
     console.log(userPantry);
     
@@ -197,45 +197,28 @@ document.addEventListener("DOMContentLoaded", (event) => {
     });
     console.log(userPantryArr);
     
+    // loop over the pantry array, crossing out any regex matches from the recipe's ingredient list
     userPantryArr.forEach(pantryItem => {
 
+      // for each pantry item, loop over the ingredients list
       for (let j = 0; j < recipeList[id].ingredients.length; j++) {
         ingredientsList = recipeList[id].ingredients[j].text;
         console.log(ingredientsList);
 
+        // if ingredient string contains the pantry item description, cross it out
         if(new RegExp(pantryItem,'i').test(ingredientsList)){
           ingredientsDisplay = `
           <li style="text-decoration:line-through">${ingredientsList}</li>`;
         }
-        else{
+        else{ // no match, display as normal
           ingredientsDisplay = `
           <li>${ingredientsList}</li>`;
         }
 
+        //push the formatted ingredient to the modal's ingredient array
         ingredientArr.push(ingredientsDisplay);
       }
     });
-    
-    // for (let j = 0; j < recipeList[id].ingredients.length; j++) {
-    //   ingredientsList = recipeList[id].ingredients[j].text;
-    //   console.log(ingredientsList);
-    //   /* To cross off items that are in pantry, make an if block to add inline style if ingredientList matches 
-    //   any values inside of the userPanty array (regex maybe?). else display the <li> as is */
-    //   userPantryArr.forEach(pantryItem => {
-    //     console.log(`pantry: ${pantryItem}, item:${ingredientsList}`);
-    //     console.log(new RegExp(pantryItem,'i').test(ingredientsList));
-    //     if(new RegExp(pantryItem,'i').test(ingredientsList)){
-    //       ingredientsDisplay = `
-    //       <li style="text-decoration:line-through">${ingredientsList}</li>`;
-    //       return;
-    //     }
-    //     else{
-    //       ingredientsDisplay = `
-    //       <li>${ingredientsList}</li>`;
-    //     }
-    //   });
-    //   ingredientArr.push(ingredientsDisplay);
-    // }
 
     let recipeModal = document.createElement(`div`);
     recipeModal.classList.add(`modal`);

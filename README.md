@@ -60,7 +60,9 @@ Responsiveness - screens will react to limited viewports and collapose into scro
  
 
 ## Built With
-jQuery 3.3.1 - JavaScript library   
+ExpressJS - Server Side Framework
+Handlebars - Templating Engine
+PassportJS - User Authentication library
 Materialize 1.0 - Materialize library
 Fontawesome 5.6.3 - Font Awesome library
    
