@@ -21,6 +21,8 @@ const pantryModal = document.querySelector("#pantry");
 const pantryButton = document.querySelector("#pantry-modal-button");
 const pantryItems = document.querySelectorAll(".pantry-item");
 const pantryDeleteButtons = document.querySelectorAll(".pantry-delete");
+const profileModal = document.querySelector("#profile");
+const profileButton = document.querySelector("#profile-modal-button");
 let modalID;
 let ingredientsList;
 let ingredientsDisplay;
@@ -31,6 +33,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
   const loginModalInstance = M.Modal.init(loginModal);
   let recipeModalInstance;
   const pantryModalInstance = M.Modal.init(pantryModal);
+  const profileModalInstance = M.Modal.init(profileModal);
 
   //Define Event listeners
 
@@ -42,6 +45,11 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
     if (event.target && event.target.matches("#pantry-modal-button")) {
       pantryModalInstance.open();
+    }
+
+    if (event.target && event.target.matches("#profile-modal-button")) {
+      console.log('clicked');
+      profileModalInstance.open();
     }
   });
 
