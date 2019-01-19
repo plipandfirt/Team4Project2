@@ -118,9 +118,14 @@
     </form>
   </div>
 
-  <div class="modal-footer">
-    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+  <div row="row">
+    <ul>
+    {{#each pantry}}
+      <li>{{ingredient}}</li><button class="pantry-delete" data-delete={{id}}>Delete</button>
+    {{/each}}
+    </ul>
   </div>
+
 </div>
 
 
