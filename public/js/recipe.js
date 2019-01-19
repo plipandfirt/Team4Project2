@@ -197,15 +197,45 @@ document.addEventListener("DOMContentLoaded", (event) => {
     });
     console.log(userPantryArr);
     
-    for (let j = 0; j < recipeList[id].ingredients.length; j++) {
-      ingredientsList = recipeList[id].ingredients[j].text;
-      /* To cross off items that are in pantry, make an if block to add inline style if ingredientList matches 
-      any values inside of the userPanty array (regex maybe?). else display the <li> as is */
-      ingredientsDisplay = `
-      <li>${ingredientsList}</li>`;
+    userPantryArr.forEach(pantryItem => {
 
-      ingredientArr.push(ingredientsDisplay);
-    }
+      for (let j = 0; j < recipeList[id].ingredients.length; j++) {
+        ingredientsList = recipeList[id].ingredients[j].text;
+        console.log(ingredientsList);
+
+        if(new RegExp(pantryItem,'i').test(ingredientsList)){
+          ingredientsDisplay = `
+          <li style="text-decoration:line-through">${ingredientsList}</li>`;
+        }
+        else{
+          ingredientsDisplay = `
+          <li>${ingredientsList}</li>`;
+        }
+
+        ingredientArr.push(ingredientsDisplay);
+      }
+    });
+    
+    // for (let j = 0; j < recipeList[id].ingredients.length; j++) {
+    //   ingredientsList = recipeList[id].ingredients[j].text;
+    //   console.log(ingredientsList);
+    //   /* To cross off items that are in pantry, make an if block to add inline style if ingredientList matches 
+    //   any values inside of the userPanty array (regex maybe?). else display the <li> as is */
+    //   userPantryArr.forEach(pantryItem => {
+    //     console.log(`pantry: ${pantryItem}, item:${ingredientsList}`);
+    //     console.log(new RegExp(pantryItem,'i').test(ingredientsList));
+    //     if(new RegExp(pantryItem,'i').test(ingredientsList)){
+    //       ingredientsDisplay = `
+    //       <li style="text-decoration:line-through">${ingredientsList}</li>`;
+    //       return;
+    //     }
+    //     else{
+    //       ingredientsDisplay = `
+    //       <li>${ingredientsList}</li>`;
+    //     }
+    //   });
+    //   ingredientArr.push(ingredientsDisplay);
+    // }
 
     let recipeModal = document.createElement(`div`);
     recipeModal.classList.add(`modal`);

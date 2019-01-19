@@ -36,9 +36,7 @@
           <li><a id="pantry-modal-button" href="#">My Pantry</a></li>
           <li><img src="{{user.image_url}}"></li>
           <li><a href="/auth/logout">Logout</a></li>
-        {{#if user}}
-          <li><a href="#">My Profile</a></li>
-          <li><a id="login-modal-button" href="#">My Profile</a></li>
+          <li><a id="profile-modal-button" href="#">My Profile</a></li>
         {{/if}}
       </ul>
     </div>
@@ -50,7 +48,7 @@
     {{#each pantry}}
         <label>
           <input type="checkbox" name="ingredient-box" value={{ingredient}} class="filled-in"/>
-          <span>{{ingredient}}</span>
+          <span class="pantry-item">{{ingredient}}</span>
         </label> 
     {{/each}}
     </div>
