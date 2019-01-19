@@ -120,6 +120,15 @@
     </form>
     <a href="#!" class="modal-close btn-flat recipe-x"><i class="fas fa-times"></i></a>
   </div>
+
+  <div row="row">
+    <ul>
+    {{#each pantry}}
+      <li>{{ingredient}}</li><button class="pantry-delete" data-delete={{id}}>Delete</button>
+    {{/each}}
+    </ul>
+  </div>
+
 </div>
 
 
