@@ -182,9 +182,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
         <a class="modal-src" href="${recipeList[id].url}" target="_blank">Source: ${recipeList[id].source}</a>
         <a href="#!" class="modal-close btn-flat recipe-x"><i class="fas fa-times"></i></a>
       </div>
-      
-        
-      
+           
     `;
     modalWrapperDiv.append(recipeModal);
     console.log('worked');

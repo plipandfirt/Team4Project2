@@ -88,6 +88,7 @@ main{
   grid-column:  3 / span 1;
   grid-row: 1 / span 1;
   margin:auto;
+  margin-top:0px;
 }
 
 .modal {
