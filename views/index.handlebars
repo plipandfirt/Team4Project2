@@ -24,7 +24,7 @@
 
     <nav class="orange darken-1">
     <div class="nav-wrapper">
-      <a href="#" class="brand-logo">Cornucopia</a>
+      <a href="/" class="brand-logo">Cornucopia</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li><div class="input-field col s6">
           <input placeholder="Search for a recipe..." id="recipe" type="text" class="validate">
@@ -56,7 +56,7 @@
         </label> 
     {{/each}}
     </div>
-        <button id="user-pantry-search" class="btn waves-effect waves-light" type="submit" name="action">Search
+        <button id="user-pantry-search" class="btn waves-effect waves-light orange darken-2" type="submit" name="action">Search
         </button>
   {{/if}}
 
@@ -111,24 +111,22 @@
   <div class="modal-content pantry-modal">
     <h4 class="modal-header">My Pantry</h4>
     <form action="api/pantry" method="POST">
-      <div class="input-field">
+      <div class="input-field pantry-text">
         <input id="pantryItem" type="text" class="validate" name="ingredient">
         <label for="pantryItem">Pantry Item</label>
       </div>
-        <button class="submit-btn right-align btn waves-effect waves-light" type="submit">Add to Pantry
+        <button class="submit-btn right-align btn waves-effect waves-light orange darken-2" type="submit">Add to Pantry
         </button>
     </form>
     <a href="#!" class="modal-close btn-flat recipe-x"><i class="fas fa-times"></i></a>
-  </div>
-
-  <div row="row">
+    <div class="pantry-items">
     <ul>
     {{#each pantry}}
-      <li>{{ingredient}}</li><button class="pantry-delete" data-delete={{id}}>Delete</button>
+      <li class="pantry-item">{{ingredient}}</li><button class="pantry-delete btn waves-effect waves-light orange darken-2" data-delete={{id}}>Delete</button>
     {{/each}}
     </ul>
   </div>
-
+  </div>
 </div>
 
 
