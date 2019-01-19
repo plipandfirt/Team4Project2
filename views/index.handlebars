@@ -38,10 +38,10 @@
         <li><a id="login-modal-button" href="#">Sign Up/Log in</a></li>
         {{/unless}}
         {{#if user}}
-        <li><a id="pantry-modal-button" href="#">My Pantry</a></li>
-        <li><img src="{{user.image_url}}"></li>
-        <li><a href="/auth/logout">Logout</a></li>
-        <li><a id="profile-modal-button" href="#">My Profile</a></li>
+          <li><a id="pantry-modal-button" href="#">My Pantry</a></li>
+          <li><img src="{{user.image_url}}"></li>
+          <li><a href="/auth/logout">Logout</a></li>
+          <li><a id="profile-modal-button" href="#">My Profile</a></li>
         {{/if}}
       </ul>
     </div>
@@ -51,22 +51,16 @@
   {{#if user}}
   <div class="pantry-div">
     {{#each pantry}}
-    <label>
-      <input type="checkbox" name="ingredient-box" value={{ingredient}} class="filled-in" />
-      <span>{{ingredient}}</span>
-    </label>
+        <label>
+          <input type="checkbox" name="ingredient-box" value={{ingredient}} class="pantry-search-box"/>
+          <span class="pantry-search-item">{{ingredient}}</span>
+        </label> 
     {{/each}}
 
-    </div>
-        <button id="user-pantry-search" class="btn waves-effect waves-light orange darken-2" type="submit" name="action">Search
+        <button id="user-pantry-search" class="btn waves-effect waves-light orange darken-2" name="pantry-search">Search
         </button>
+    </div>
 
-  {{/if}}
-
-  {{!-- Add profile box if logged in --}}
-  {{#if user}}
-  <div class="profile-div">
-  </div>
   {{/if}}
 
   {{!-- Search results populate in card-wrapper --}}
