@@ -56,6 +56,14 @@ main{
   max-width: 50%;;
 } */
 
+.modal {
+  border: 10px solid #E49C0B;
+  background-color: #ffe0b2;
+}
+
+
+/*Recipe Modal Styling*/
+
 .recipe-detail {
   display:grid;
   grid-template-columns: 1fr 1fr 30px;
@@ -95,9 +103,20 @@ main{
   margin-top:0px;
 }
 
-.modal {
-  border: 10px solid #E49C0B;
-  background-color: #ffe0b2;
+/*Pantry Modal Styling*/
+.pantry-modal {
+  display: grid;
+  grid-template-columns: 1fr 1fr 30px;
+}
+
+#pantryItem {
+  grid-column: 1 / span 2;
+  grid-row: 2 / span 1;
+}
+
+.submit-btn {
+  grid-column: 2 / span 1;
+  grid-row: 2 / span 1;
 }
 
 #search-form{
