@@ -53,20 +53,14 @@
     {{#each pantry}}
         <label>
           <input type="checkbox" name="ingredient-box" value={{ingredient}} class="filled-in"/>
-          <span class="pantry-item">{{ingredient}}</span>
+          <span class="pantry-search-item">{{ingredient}}</span>
         </label> 
     {{/each}}
 
-    </div>
-        <button id="user-pantry-search" class="btn waves-effect waves-light orange darken-2" type="submit" name="action">Search
+        <button id="user-pantry-search" class="btn waves-effect waves-light orange darken-2" name="pantry-search">Search
         </button>
+    </div>
 
-  {{/if}}
-
-  {{!-- Add profile box if logged in --}}
-  {{#if user}}
-  <div class="profile-div">
-  </div>
   {{/if}}
 
   {{!-- Search results populate in card-wrapper --}}

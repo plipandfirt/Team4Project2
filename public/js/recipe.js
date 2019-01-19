@@ -19,15 +19,22 @@ const cardWrapperDiv = document.querySelector("#card-wrapper");
 const modalWrapperDiv = document.querySelector("#modal-wrapper");
 const pantryModal = document.querySelector("#pantry");
 const pantryButton = document.querySelector("#pantry-modal-button");
-const pantryItems = document.querySelectorAll(".pantry-item");
+const pantryItems = document.querySelectorAll(".pantry-search-item");
 const pantryDeleteButtons = document.querySelectorAll(".pantry-delete");
 const profileModal = document.querySelector("#profile");
 const profileButton = document.querySelector("#profile-modal-button");
+const pantrySearchButton = document.querySelector("#user-pantry-search");
 let modalID;
 let ingredientsList;
 let ingredientsDisplay;
 
 document.addEventListener("DOMContentLoaded", (event) => {
+
+  // create an array of node items from the pantry checkboxes
+  userPantry = Array.prototype.slice.call(pantryItems);
+  console.log(userPantry);
+
+ 
 
   // Initialize materialize modals
   const loginModalInstance = M.Modal.init(loginModal);
@@ -145,6 +152,14 @@ document.addEventListener("DOMContentLoaded", (event) => {
     });
   });
 
+  // pantrySearchButton.addEventListener("click", event => {
+  //   userPantryArr = userPantry.map(item => {
+  //     if(item.){
+
+  //     }
+  //   });
+  // });
+
   pantryDeleteButtons.forEach(button => {
     button.addEventListener("click",async event => {
       const id = event.target.dataset.delete;
@@ -195,9 +210,9 @@ document.addEventListener("DOMContentLoaded", (event) => {
     modalWrapperDiv.innerHTML = ``;
     ingredientArr = [];
 
-    // create an array of node items from the pantry checkboxes
-    userPantry = Array.prototype.slice.call(pantryItems);
-    console.log(userPantry);
+    // // create an array of node items from the pantry checkboxes
+    // userPantry = Array.prototype.slice.call(pantryItems);
+    // console.log(userPantry);
     
     // create an array of the currently logged in user's pantry items to check against recipe ingredients
     userPantryArr = userPantry.map(item => {
@@ -224,7 +239,9 @@ document.addEventListener("DOMContentLoaded", (event) => {
         }
 
         //push the formatted ingredient to the modal's ingredient array
-        ingredientArr.push(ingredientsDisplay);
+        if(!ingredientArr.includes(ingredientsDisplay)){
+          ingredientArr.push(ingredientsDisplay);
+        }
       }
     });
 
