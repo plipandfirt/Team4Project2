@@ -19,6 +19,7 @@ const cardWrapperDiv = document.querySelector("#card-wrapper");
 const modalWrapperDiv = document.querySelector("#modal-wrapper");
 const pantryModal = document.querySelector("#pantry");
 const pantryButton = document.querySelector("#pantry-modal-button");
+const pantryItems = document.querySelectorAll(".pantry-item");
 let modalID;
 let ingredientsList;
 let ingredientsDisplay;
@@ -32,6 +33,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
   //Define Event listeners
 
+  //delegate event listeners on nav bar to dynamically altered pantry modal and login modal button
   document.querySelector("#nav-mobile").addEventListener("click", event => {
     if (event.target && event.target.matches("#login-modal-button")) {
       loginModalInstance.open();
@@ -42,6 +44,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     }
   });
 
+  // delegate click listeners to dynamically created api result cards to open details modal
   cardWrapperDiv.addEventListener("click", (event) => {
     if (event.target && event.target.matches(".card")) {
       console.log(event.target.dataset.id);
@@ -53,6 +56,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     }
   });
 
+  // uses form values to make POST request to local passport JS auth
   loginButton.addEventListener("click", async (event) => {
     const username = usernameInput.value;
     const password = passwordInput.value;
@@ -68,6 +72,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     window.location = "/profile";
   });
 
+  //button to create user account inside of login modal
   createAccountButton.addEventListener("click", async (event) => {
     // clicked state hold the logic for deciding whether to expand the login screen or take the form info and create a database entry
     let clickedState = event.target.dataset.clicked;
@@ -131,6 +136,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     });
   });
 
+  // call to edemam api to get search results
   async function fetchRecipes(input) {
     const query = input.split().join("&q=");
     console.log(`Running fetch recipes with ${query}`);
@@ -140,6 +146,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
   //create cards for each item in the recipeList
   function makeCards() {
+    //clear previous search results
     cardWrapperDiv.innerHTML = ``;
     for (let i = 0; i < recipeList.length; i++) {
       let newCard = document.createElement(`div`);
@@ -156,13 +163,26 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
     }
 
-  };
+  }
   //creates detail view modals for each result - currently persists after a new search
   function recipeModal(id) {
     modalWrapperDiv.innerHTML = ``;
     ingredientArr = [];
+
+    // create an array of node items
+    userPantry = Array.prototype.slice.call(pantryItems);
+    console.log(userPantry);
+    
+    // create an array of the currently logged in user's pantry items to check against recipe ingredients
+    userPantryArr = userPantry.map(item => {
+      return item.innerText;
+    });
+    console.log(userPantryArr);
+    
     for (let j = 0; j < recipeList[id].ingredients.length; j++) {
       ingredientsList = recipeList[id].ingredients[j].text;
+      /* To cross off items that are in pantry, make an if block to add inline style if ingredientList matches 
+      any values inside of the userPanty array (regex maybe?). else display the <li> as is */
       ingredientsDisplay = `
       <li>${ingredientsList}</li>`;
 
