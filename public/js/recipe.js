@@ -11,15 +11,13 @@ const usernameInput = document.querySelector("#username");
 const passwordInput = document.querySelector("#password");
 const loginButton = document.querySelector("#login-button");
 const nameFieldsDiv = document.querySelector(".name");
-let recipeModalInit;
 const recipeCard = document.querySelector(".card-image");
-let recipeList = [];
-let ingredientArr = [];
 const cardWrapperDiv = document.querySelector("#card-wrapper");
 const modalWrapperDiv = document.querySelector("#modal-wrapper");
 const pantryModal = document.querySelector("#pantry");
 const pantryButton = document.querySelector("#pantry-modal-button");
 const pantryItems = document.querySelectorAll(".pantry-search-item");
+const pantryCheckBoxes = document.querySelectorAll(".pantry-search-box");
 const pantryDeleteButtons = document.querySelectorAll(".pantry-delete");
 const profileModal = document.querySelector("#profile");
 const profileButton = document.querySelector("#profile-modal-button");
@@ -27,11 +25,17 @@ const pantrySearchButton = document.querySelector("#user-pantry-search");
 let modalID;
 let ingredientsList;
 let ingredientsDisplay;
+let recipeModalInit;
+let recipeList = [];
+let ingredientArr = [];
+let searchArr = [];
 
 document.addEventListener("DOMContentLoaded", (event) => {
 
   // create an array of node items from the pantry checkboxes
   userPantry = Array.prototype.slice.call(pantryItems);
+  userPantryBoxes = Array.prototype.slice.call(pantryCheckBoxes);
+  console.log(userPantryBoxes);
   console.log(userPantry);
 
  
@@ -152,13 +156,33 @@ document.addEventListener("DOMContentLoaded", (event) => {
     });
   });
 
-  // pantrySearchButton.addEventListener("click", event => {
-  //   userPantryArr = userPantry.map(item => {
-  //     if(item.){
-
-  //     }
-  //   });
-  // });
+  // when the pantry search button is clicked, loop through all check boxes. if checked, add the pantry item from the same index
+  pantrySearchButton.addEventListener("click", event => {
+    searchArr = [];
+    pantryCheckBoxes.forEach((box,index) => {
+      if(box.checked){
+        console.log(`box ${userPantry[index].innerText} is checked`);
+        searchArr.push(userPantry[index].innerText);
+      }
+    });
+    console.log(searchArr.join("+"));
+    
+    fetchRecipes(searchArr.join("+")).then(response => {
+      recipeList = [];
+      for (let i = 0; i < response.data.length; i++) {
+        let newRecipe = {
+          label: response.data[i].recipe.label,
+          image: response.data[i].recipe.image,
+          ingredients: response.data[i].recipe.ingredients,
+          source: response.data[i].recipe.source,
+          url: response.data[i].recipe.url
+        };
+        recipeList.push(newRecipe);
+      }
+      console.log(recipeList);
+      makeCards();
+    });
+  });
 
   pantryDeleteButtons.forEach(button => {
     button.addEventListener("click",async event => {
