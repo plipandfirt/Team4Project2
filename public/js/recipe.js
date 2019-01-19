@@ -20,6 +20,7 @@ const modalWrapperDiv = document.querySelector("#modal-wrapper");
 const pantryModal = document.querySelector("#pantry");
 const pantryButton = document.querySelector("#pantry-modal-button");
 const pantryItems = document.querySelectorAll(".pantry-item");
+const pantryDeleteButtons = document.querySelectorAll(".pantry-delete");
 let modalID;
 let ingredientsList;
 let ingredientsDisplay;
@@ -133,6 +134,23 @@ document.addEventListener("DOMContentLoaded", (event) => {
       }
       console.log(recipeList);
       makeCards();
+    });
+  });
+
+  pantryDeleteButtons.forEach(button => {
+    button.addEventListener("click",async event => {
+      const id = event.target.dataset.delete;
+      console.log(id);
+      try{
+        await fetch(`/api/pantry/${id}`,{
+          method:"DELETE"
+        });
+        // window.location = "/profile";
+        location.reload();
+      }
+      catch(err){
+        if(err) {throw err;}
+      }
     });
   });
 

@@ -17,17 +17,19 @@ module.exports = function(app) {
       ingredient: newIngredient,
       userId: addedId
     });
-    res.json(data);
+    res.redirect("/profile");
   });
 
-  // app.get("/profile", async function(req,res) {
-  //   const data = await db.pantry.findAll({
-  //     where:{
-  //       userId:req.user.id
-  //     }
-  //   });
-  //   console.log(data);
-  // });
+  app.delete("/api/pantry/:id",(req,res) => {
+    const deleteId = req.params.id;
+    console.log(`Deleting id ${deleteId}`);
+    const data = db.pantry.destroy({
+      where:{
+        id:deleteId
+      }
+    });
+    res.redirect("/profile");
+  });
 
   app.get("/api/recipes/:query", async function(req,res){
     const search = req.params.query;
