@@ -57,7 +57,7 @@ main{
 
 .recipe-detail {
   display:grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 20px;
   grid-gap: 10px;
 }
 
@@ -80,6 +80,16 @@ main{
 .modal-src {
   grid-column: 2 / span 1;
   grid-row: 3 / span 1;
+}
+
+.recipe-x {
+  grid-column:  3 / span 1;
+  grid-row: 1 / span 1;
+}
+
+.modal {
+  border: 10px solid #E49C0B;
+  background-color: #ffe0b2;
 }
 
 #search-form{

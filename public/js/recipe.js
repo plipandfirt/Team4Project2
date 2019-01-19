@@ -180,10 +180,11 @@ document.addEventListener("DOMContentLoaded", (event) => {
         <img class="modal-img" src="${recipeList[id].image}">
         <ul class="modal-text">${ingredientArr.join("")}</ul>
         <a class="modal-src" href="${recipeList[id].url}" target="_blank">Source: ${recipeList[id].source}</a>
+        <a href="#!" class="modal-close btn-flat recipe-x"><i class="fas fa-times"></i></a>
       </div>
-      <div class="modal-footer">
-        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Dismiss</a>
-      </div>
+      
+        
+      
     `;
     modalWrapperDiv.append(recipeModal);
     console.log('worked');
