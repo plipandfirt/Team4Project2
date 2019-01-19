@@ -21,6 +21,8 @@ const pantryModal = document.querySelector("#pantry");
 const pantryButton = document.querySelector("#pantry-modal-button");
 const pantryItems = document.querySelectorAll(".pantry-item");
 const pantryDeleteButtons = document.querySelectorAll(".pantry-delete");
+const profileModal = document.querySelector("#profile");
+const profileButton = document.querySelector("#profile-modal-button");
 let modalID;
 let ingredientsList;
 let ingredientsDisplay;
@@ -31,6 +33,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
   const loginModalInstance = M.Modal.init(loginModal);
   let recipeModalInstance;
   const pantryModalInstance = M.Modal.init(pantryModal);
+  const profileModalInstance = M.Modal.init(profileModal);
 
   //Define Event listeners
 
@@ -42,6 +45,11 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
     if (event.target && event.target.matches("#pantry-modal-button")) {
       pantryModalInstance.open();
+    }
+
+    if (event.target && event.target.matches("#profile-modal-button")) {
+      console.log('clicked');
+      profileModalInstance.open();
     }
   });
 
@@ -231,10 +239,9 @@ document.addEventListener("DOMContentLoaded", (event) => {
         <img class="modal-img" src="${recipeList[id].image}">
         <ul class="modal-text">${ingredientArr.join("")}</ul>
         <a class="modal-src" href="${recipeList[id].url}" target="_blank">Source: ${recipeList[id].source}</a>
+        <a href="#!" class="modal-close btn-flat recipe-x"><i class="fas fa-times"></i></a>
       </div>
-      <div class="modal-footer">
-        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Dismiss</a>
-      </div>
+           
     `;
     modalWrapperDiv.append(recipeModal);
     console.log('worked');

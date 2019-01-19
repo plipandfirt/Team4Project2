@@ -27,6 +27,7 @@ body{
 
 h4{
   color:black;
+  font-family: 'Shrikhand', cursive;
 }
 
 .header-text {
@@ -55,9 +56,17 @@ main{
   max-width: 50%;;
 } */
 
+.modal {
+  border: 10px solid #E49C0B;
+  background-color: #ffe0b2;
+}
+
+
+/*Recipe Modal Styling*/
+
 .recipe-detail {
   display:grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 30px;
   grid-gap: 10px;
 }
 
@@ -66,10 +75,15 @@ main{
   margin:auto;
 }
 
+.modal .modal-footer {
+  background-color: #ffe0b2;
+}
+
 .modal-img {
   grid-column: 1 / span 1;
   grid-row: 2 / span 2;
   margin: auto;
+  border-radius: 25px;
 }
 
 .modal-text {
@@ -80,6 +94,42 @@ main{
 .modal-src {
   grid-column: 2 / span 1;
   grid-row: 3 / span 1;
+}
+
+.recipe-x {
+  grid-column:  3 / span 1;
+  grid-row: 1 / span 1;
+  margin:auto;
+  margin-top:0px;
+}
+
+/*Pantry Modal Styling*/
+.pantry-modal {
+  display: grid;
+  grid-template-columns: 1fr 1fr 30px;
+  grid-gap: 10px;
+}
+
+.pantry-text {
+  grid-column: 1 / span 2;
+  grid-row: 2 / span 1;
+}
+
+.submit-btn {
+  grid-column: 2 / span 1;
+  grid-row: 2 / span 1;
+  justify-self: end;
+}
+
+.pantry-items {
+  grid-column: 1 / span 2;
+  grid-row: 3 / span 1;
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.pantry-item {
+  grid-column: 1 / span 1;
 }
 
 #search-form{
@@ -152,7 +202,8 @@ footer{
   box-shadow: -10px 10px 5px rgba(100, 100, 100, 0.6);
   min-width: 10rem;
   padding: 20px;
-  border-radius: 10%
+  border-radius: 10%;
+  cursor: pointer;
 }
 
 .card-title {
