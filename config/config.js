@@ -16,6 +16,7 @@ module.exports = {
     "dialect": "mysql",
     "logging": false
   },
+  
   "production": {
     "dialect": "mysql",
     "JAWSDB_HOST": process.env.JAWSDB_HOST,

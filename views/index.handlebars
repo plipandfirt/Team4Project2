@@ -36,6 +36,9 @@
           <li><a id="pantry-modal-button" href="#">My Pantry</a></li>
           <li><img src="{{user.image_url}}"></li>
           <li><a href="/auth/logout">Logout</a></li>
+        {{#if user}}
+          <li><a href="#">My Profile</a></li>
+          <li><a id="login-modal-button" href="#">My Profile</a></li>
         {{/if}}
       </ul>
     </div>
@@ -118,9 +121,14 @@
     </form>
   </div>
 
-  <div class="modal-footer">
-    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+  <div row="row">
+    <ul>
+    {{#each pantry}}
+      <li>{{ingredient}}</li><button class="pantry-delete" data-delete={{id}}>Delete</button>
+    {{/each}}
+    </ul>
   </div>
+
 </div>
 
 
