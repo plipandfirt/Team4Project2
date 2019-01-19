@@ -14,6 +14,8 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
     crossorigin="anonymous">
 
+  <link href="https://fonts.googleapis.com/css?family=Shrikhand" rel="stylesheet">
+
   <link rel="stylesheet" href="/styles/styles.css" media="screen" title="no title" charset="utf-8">
 
   <title>Cornucopia</title>
@@ -23,7 +25,7 @@
 
   <nav class="orange darken-1">
     <div class="nav-wrapper">
-      <a href="#" class="brand-logo">Cornucopia</a>
+      <a href="/" class="brand-logo">Cornucopia</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li>
           <div class="input-field col s6">
@@ -54,9 +56,11 @@
       <span>{{ingredient}}</span>
     </label>
     {{/each}}
-  </div>
-  <button id="user-pantry-search" class="btn waves-effect waves-light" type="submit" name="action">Search
-  </button>
+
+    </div>
+        <button id="user-pantry-search" class="btn waves-effect waves-light orange darken-2" type="submit" name="action">Search
+        </button>
+
   {{/if}}
 
   {{!-- Add profile box if logged in --}}
@@ -76,7 +80,7 @@
 
   <div id="sign-up" class="signup modal">
     <div class="modal-content">
-      <h4>Sign up for My Pantry!</h4>
+      <h4>Welcome to My Pantry!</h4>
       <a href="/auth/google" class="modal-close waves-effect waves-green btn-flat">Login Using Google</a>
 
       <div class="row">
@@ -104,39 +108,36 @@
           </div>
         </div>
 
-      </div>
-      <div class="modal-footer">
-        <a href="#" id="login-button" class="waves-effect waves-green btn-flat">Login</a>
-        <a href="#!" data-clicked="false" id="create-button" class="waves-effect waves-green btn-flat">Sign Up</a>
-      </div>
+    </div>
+    <div class="modal-footer">
+      <a href="#" id="login-button" class="waves-effect waves-green btn-flat">Login</a>
+      <a href="#!" data-clicked="false" id="create-button" class="waves-effect waves-green btn-flat">Sign Up</a>
     </div>
   </div>
+</div>
 
-  <div id="pantry" class="modal">
-    <div class="modal-content">
-      <h4>My Pantry</h4>
-      <form action="api/pantry" method="POST">
-        <div class="row">
-          <div class="input-field col s12">
-            <input id="pantryItem" type="text" class="validate" name="ingredient">
-            <label for="pantryItem">Pantry Item</label>
-          </div>
-          <div class="col s12">
-            <button class="right-align btn waves-effect waves-light " type="submit">Submit
-            </button>
-          </div>
-        </div>
-      </form>
-    </div>
+<div id="pantry" class="modal">
+  <div class="modal-content pantry-modal">
+    <h4 class="modal-header">My Pantry</h4>
+    <form action="api/pantry" method="POST">
+      <div class="input-field pantry-text">
+        <input id="pantryItem" type="text" class="validate" name="ingredient">
+        <label for="pantryItem">Pantry Item</label>
+      </div>
+        <button class="submit-btn right-align btn waves-effect waves-light orange darken-2" type="submit">Add to Pantry
+        </button>
+    </form>
+    <a href="#!" class="modal-close btn-flat recipe-x"><i class="fas fa-times"></i></a>
+    <div class="pantry-items">
+    <ul>
+    {{#each pantry}}
+      <li class="pantry-item">{{ingredient}}</li><button class="pantry-delete btn waves-effect waves-light orange darken-2" data-delete={{id}}>Delete</button>
+    {{/each}}
+    </ul>
   </div>
+  </div>
+</div>
 
-    <div row="row">
-      <ul>
-        {{#each pantry}}
-        <li>{{ingredient}}</li><button class="pantry-delete" data-delete={{id}}>Delete</button>
-        {{/each}}
-      </ul>
-    </div>
 
   </div>
 
