@@ -6,17 +6,22 @@
   display: none;
 }
 
+.brand-logo{
+  padding-left: 10px;
+}
+
 body{
   background: rgb(209, 209, 209);
   background: url(../images/main-image.jpg) no-repeat center center fixed; 
   /* background: linear-gradient(45deg, rgba(132,152,137,1) 7%, rgba(189,255,196,1) 93%); */
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 70vh 50px;
+  grid-template-rows: 1fr 75vh auto;
   grid-gap: 1em;
   max-width: 99.8%;
   padding: 1em;
   opacity: 1;
+  max-height: 100vh;
   box-sizing: border-box;
   justify-content: stretch;
   align-content: center;
@@ -35,12 +40,17 @@ h4{
   align-self: center;
 }
 
+.pantry-div{
+  max-height: 50px;
+  background: rgba(255,255,255,.6);
+  padding: 5px;
+}
+
 main{
-  background: url(../images/main-image.jpg) no-repeat center center fixed; 
-  background-size: cover;
-  height: 100%;
-  overflow-x: hidden;
   grid-area: main;
+  overflow: hidden;
+  overflow-y: hidden;
+  align-content: start;
 }
 
 /* .modal{
@@ -124,19 +134,11 @@ main{
 .pantry-items {
   grid-column: 1 / span 2;
   grid-row: 3 / span 1;
-  display:grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  display:flex;
 }
 
 .pantry-item {
-  grid-column: 1 / span 1;
-}
-
-#search-form{
-  display: grid;
-  grid-template-columns: repeat(3,minmax(85px,1fr));
-  justify-content: center;
-  margin: auto;
+  display: inline-block;
 }
 
 .search{
@@ -145,22 +147,6 @@ main{
 
 .sort label{
   color: white;
-}
-
-aside {
-  padding: 15px;
-  font-size: 20px;
-  background: beige;
-  text-align: center;
-  font-family: 'McLaren', cursive;
-  grid-area: aside;
-  display: grid;
-  grid-template-columns: 1fr;
-  align-content: start;
-
-  background-size: cover;
-  height: 100%;
-  overflow-x: hidden;
 }
 
 hr{
@@ -174,12 +160,11 @@ text-align: center;
 }
 footer{
   margin-top: 3px;
-  background: #232323;
-  grid-column: 1 / span 2;
+  grid-column: 1 / -1;
   color: bisque;
   font-family: 'McLaren', cursive;
   text-align: center;
-  padding-top: 13px;
+  padding: 1rem 0;
   grid-area: footer;
 }
 .shadow{
@@ -195,6 +180,7 @@ footer{
   grid-template-columns: repeat(auto-fill,minmax(15rem,1fr));
   grid-gap: 1rem;
   padding: 10px;
+  margin: auto;
 }
 
 .card{
@@ -204,6 +190,7 @@ footer{
   padding: 20px;
   border-radius: 10%;
   cursor: pointer;
+  border: 3px solid white;
 }
 
 .card-title {
@@ -222,10 +209,16 @@ footer{
   font-size: 10px;
 }
 
-.card:hover{	
-  background-color: rgba(255,255,255,.9)	
+.grow{
+  transition: .5s ease;
 }
-
+  
+.grow:hover{
+  -webkit-transform: scale(1.07);
+  -ms-transform: scale(1.07);
+  transform: scale(1.07);
+  transition: .5s ease;
+}
 
 .form-control{
 background-color: black

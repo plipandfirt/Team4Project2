@@ -47,31 +47,38 @@
     </div>
   </nav>
 
-  {{!-- Add pantry search boxes here if logged in --}}
-  {{#if user}}
-  <div class="pantry-div">
-    {{#each pantry}}
-        <label>
-          <input type="checkbox" name="ingredient-box" value={{ingredient}} class="pantry-search-box"/>
-          <span class="pantry-search-item">{{ingredient}}</span>
-        </label> 
-    {{/each}}
+  <main>
+    {{!-- Add pantry search boxes here if logged in --}}
+    {{#if user}}
+    <div class="pantry-div">
+      {{#each pantry}}
+          <label>
+            <input type="checkbox" name="ingredient-box" value={{ingredient}} class="pantry-search-box"/>
+            <span class="pantry-search-item">{{ingredient}}</span>
+          </label> 
+      {{/each}}
 
         <button id="user-pantry-search" class="btn waves-effect waves-light orange darken-2" name="pantry-search">Search
         </button>
     </div>
+    {{/if}}
 
-  {{/if}}
+    {{!-- Search results populate in card-wrapper --}}
+    <div id="card-wrapper">
+    </div>
+  </main>
 
-  {{!-- Search results populate in card-wrapper --}}
-  <div id="card-wrapper">
 
-  </div>
+<footer class="orange">
+  Designed and Coded by //TODO: Team Name (2019)
+</footer>
 
+  {{!-- recipie modals are dynamincally inserted here --}}
   <div id="modal-wrapper">
 
   </div>
 
+  {{!-- Login/Sign-Up Modal opens on click event --}}
   <div id="sign-up" class="signup modal">
     <div class="modal-content">
       <h4>Welcome to My Pantry!</h4>
@@ -110,6 +117,7 @@
   </div>
 </div>
 
+{{!-- Form to add items to user's pantry, opens on click event --}}
 <div id="pantry" class="modal">
   <div class="modal-content pantry-modal">
     <h4 class="modal-header">My Pantry</h4>
@@ -123,32 +131,27 @@
     </form>
     <a href="#!" class="modal-close btn-flat recipe-x"><i class="fas fa-times"></i></a>
     <div class="pantry-items">
-    <ul>
-    {{#each pantry}}
-      <li class="pantry-item">{{ingredient}}</li><button class="pantry-delete btn waves-effect waves-light orange darken-2" data-delete={{id}}>Delete</button>
-    {{/each}}
-    </ul>
-  </div>
+      <ul>
+      {{#each pantry}}
+        <li class="pantry-item">{{ingredient}}</li><button class="pantry-delete btn waves-effect waves-light orange darken-2" data-delete={{id}}><i class="fas fa-times"></i></button>
+      {{/each}}
+      </ul>
+    </div>
   </div>
 </div>
 
-
+{{!-- User profile modal to update username & password, opens on click event --}}
+<div id="profile" class="modal">
+  <div class="modal-content">
+    <h4>My Profile</h4>
+    {{!-- <label> --}}
+      <p> {{user.username}}</p>
+      <p> {{user.password}}</p>
+    {{!-- </label> --}}
+  {{!-- <button id="user-profile-update" class="btn waves-effect waves-light" type="submit" name="action">Update
+  </button> --}}
   </div>
-
-  <div id="profile" class="modal">
-    <div class="modal-content">
-      <h4>My Profile</h4>
-      {{!-- <label> --}}
-        <p> {{user.username}}</p>
-        {{!-- <value= {{user.password}} class="filled-in" /> --}}
-      {{!-- </label> --}}
-    </div>
-  </div>
-
-    {{!-- <button id="user-profile-update" class="btn waves-effect waves-light" type="submit" name="action">Update
-    </button> --}}
-    
+</div>
 
 </body>
-
 </html>
