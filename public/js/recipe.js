@@ -234,41 +234,52 @@ document.addEventListener("DOMContentLoaded", (event) => {
   function recipeModal(id) {
     modalWrapperDiv.innerHTML = ``;
     ingredientArr = [];
-
-    // // create an array of node items from the pantry checkboxes
-    // userPantry = Array.prototype.slice.call(pantryItems);
-    // console.log(userPantry);
     
-    // create an array of the currently logged in user's pantry items to check against recipe ingredients
-    userPantryArr = userPantry.map(item => {
-      return item.innerText;
-    });
-    console.log(userPantryArr);
-    
-    // loop over the pantry array, crossing out any regex matches from the recipe's ingredient list
-    userPantryArr.forEach(pantryItem => {
+    // if a user is logged in, handle striking out ingredients based on their pantry
+    if(userPantry.length > 0){
+      // create an array of the currently logged in user's pantry items to check against recipe ingredients
+      userPantryArr = userPantry.map(item => {
+        return item.innerText;
+      });
+      console.log(userPantryArr);
 
+      // loop over the pantry array, crossing out any regex matches from the recipe's ingredient list
+      userPantryArr.forEach(pantryItem => {
+
+        // for each pantry item, loop over the ingredients list
+        for (let j = 0; j < recipeList[id].ingredients.length; j++) {
+          ingredientsList = recipeList[id].ingredients[j].text;
+          console.log(ingredientsList);
+
+          // if ingredient string contains the pantry item description, cross it out
+          if(new RegExp(pantryItem,'i').test(ingredientsList)){
+            ingredientsDisplay = `<li style="text-decoration:line-through">${ingredientsList}</li>`;
+          }
+          else{ // no match, display as normal
+            ingredientsDisplay = `<li>${ingredientsList}</li>`;
+          }
+
+          //push the formatted ingredient to the modal's ingredient array
+          if(!ingredientArr.includes(ingredientsDisplay)){
+            ingredientArr.push(ingredientsDisplay);
+          }
+        }
+      });
+    }
+    // else, display ingredients normally, ignoring the pantryArr
+    else{
       // for each pantry item, loop over the ingredients list
       for (let j = 0; j < recipeList[id].ingredients.length; j++) {
         ingredientsList = recipeList[id].ingredients[j].text;
         console.log(ingredientsList);
-
-        // if ingredient string contains the pantry item description, cross it out
-        if(new RegExp(pantryItem,'i').test(ingredientsList)){
-          ingredientsDisplay = `
-          <li style="text-decoration:line-through">${ingredientsList}</li>`;
-        }
-        else{ // no match, display as normal
-          ingredientsDisplay = `
-          <li>${ingredientsList}</li>`;
-        }
-
+        ingredientsDisplay = `<li>${ingredientsList}</li>`;
         //push the formatted ingredient to the modal's ingredient array
-        if(!ingredientArr.includes(ingredientsDisplay)){
-          ingredientArr.push(ingredientsDisplay);
-        }
+        ingredientArr.push(ingredientsDisplay);
+        console.log(ingredientArr);
       }
-    });
+
+    }
+    
 
     let recipeModal = document.createElement(`div`);
     recipeModal.classList.add(`modal`);
