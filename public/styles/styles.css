@@ -162,7 +162,6 @@ footer{
   margin-top: 3px;
   grid-column: 1 / -1;
   color: bisque;
-  font-family: 'McLaren', cursive;
   text-align: center;
   padding: 1rem 0;
   grid-area: footer;
