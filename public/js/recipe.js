@@ -216,6 +216,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     for (let i = 0; i < recipeList.length; i++) {
       let newCard = document.createElement(`div`);
       newCard.classList.add(`card`);
+      newCard.classList.add(`grow`);
       newCard.setAttribute(`data-id`, [i]);
       newCard.setAttribute(`style`, `background-image: url(${recipeList[i].image}); background-position: center;`);
 
