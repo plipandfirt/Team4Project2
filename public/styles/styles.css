@@ -10,6 +10,11 @@
   padding-left: 10px;
 }
 
+html {
+  width: 100%;
+  height: 100%;
+}
+
 body{
   background: rgb(209, 209, 209);
   background: url(../images/main-image.jpg) no-repeat center center fixed; 
@@ -42,8 +47,8 @@ h4{
 }
 
 .pantry-div{
-  max-height: 50px;
-  background: rgba(255,255,255,.6);
+  max-height: 100px;
+  background: rgba(255,255,255,.9);
   padding: 5px;
 }
 
@@ -79,6 +84,18 @@ main{
   display:grid;
   grid-template-columns: 1fr 1fr 30px;
   grid-gap: 10px;
+  grid-template-areas: "header header close"
+                        "image ingredients ."
+                        ". link ."
+}
+
+@media (max-width: 700px) {
+  .recipe-detail {
+  grid-template-areas: "header header close"
+                        "image image image"
+                        "ingredients ingredients ingredients"
+                        "link link link"
+  }
 }
 
 .modal-header {
@@ -95,16 +112,19 @@ main{
   grid-row: 2 / span 2;
   margin: auto;
   border-radius: 25px;
+  grid-area: image;
 }
 
 .modal-text {
   grid-column: 2 / span 1;
   grid-row: 2 / span 1;
+  grid-area: ingredients;
 }
 
 .modal-src {
   grid-column: 2 / span 1;
   grid-row: 3 / span 1;
+  grid-area: link;
 }
 
 .recipe-x {
@@ -112,6 +132,7 @@ main{
   grid-row: 1 / span 1;
   margin:auto;
   margin-top:0px;
+  grid-area: close;
 }
 
 /*Pantry Modal Styling*/
@@ -124,6 +145,7 @@ main{
 .pantry-text {
   grid-column: 1 / span 2;
   grid-row: 2 / span 1;
+  margin:auto;
 }
 
 .submit-btn {
@@ -140,6 +162,10 @@ main{
 
 .pantry-item {
   display: inline-block;
+}
+
+.pantry-search-item {
+  padding-right: 20px;
 }
 
 .search{
@@ -181,6 +207,8 @@ footer{
   grid-gap: 1rem;
   padding: 10px;
   margin: auto;
+  height: 100%;
+  overflow-y: auto;
 }
 
 .card{
