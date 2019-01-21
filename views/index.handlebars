@@ -120,7 +120,7 @@
 {{!-- Form to add items to user's pantry, opens on click event --}}
 <div id="pantry" class="modal">
   <div class="modal-content pantry-modal">
-    <h4 class="modal-header">My Pantry</h4>
+    <h4 class="modal-header">{{user.username}}'s Pantry</h4>
     <form action="api/pantry" method="POST" class="pantry-text">
       <div class="input-field">
         <input id="pantryItem" type="text" class="validate" name="ingredient">
@@ -133,7 +133,7 @@
     <div class="pantry-items">
       <ul>
       {{#each pantry}}
-        <li class="pantry-item">{{ingredient}}</li><button class="pantry-delete btn waves-effect waves-light orange darken-2" data-delete={{id}}><i class="fas fa-times"></i></button>
+        <button class="pantry-item pantry-delete btn waves-effect waves-light orange darken-2" data-delete={{id}}>{{ingredient}} | <strong>X</strong></button>
       {{/each}}
       </ul>
     </div>
