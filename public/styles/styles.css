@@ -140,12 +140,16 @@ main{
   display: grid;
   grid-template-columns: 1fr 1fr 30px;
   grid-gap: 10px;
+  grid-template-areas: "header header close"
+                      "search search search"
+                      "items items items"
 }
 
 .pantry-text {
   grid-column: 1 / span 2;
   grid-row: 2 / span 1;
   margin:auto;
+  grid-area: search;
 }
 
 .submit-btn {
@@ -157,11 +161,25 @@ main{
 .pantry-items {
   grid-column: 1 / span 2;
   grid-row: 3 / span 1;
-  display:flex;
+  display:grid;
+  grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+  grid-gap: 1rem;
+  grid-area:items;
 }
 
 .pantry-item {
   display: inline-block;
+  grid-column-start: auto;
+  grid-row-start: auto;
+  margin: 5px;
+}
+
+.pantry-x {
+  grid-column:  3 / span 1;
+  grid-row: 1 / span 1;
+  margin:auto;
+  margin-top:0px;
+  grid-area: close;
 }
 
 .pantry-search-item {
