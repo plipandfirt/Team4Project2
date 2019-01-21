@@ -29,6 +29,7 @@ let recipeModalInit;
 let recipeList = [];
 let ingredientArr = [];
 let searchArr = [];
+let selectedIngredients = [];
 
 document.addEventListener("DOMContentLoaded", (event) => {
 
@@ -69,7 +70,9 @@ document.addEventListener("DOMContentLoaded", (event) => {
     if (event.target && event.target.matches(".card")) {
       console.log(event.target.dataset.id);
       modalID = event.target.dataset.id;
-      recipeModal(modalID);
+      selectedIngredients = recipeList[modalID].ingredients.slice(0);
+      console.log(`making modal with ${selectedIngredients} at id ${modalID}`);
+      recipeModal(modalID,selectedIngredients);
       recipeModalInit = document.querySelector(`#recipe-full${modalID}`);
       recipeModalInstance = M.Modal.init(recipeModalInit);
       recipeModalInstance.open();
@@ -221,7 +224,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
       newCard.setAttribute(`style`, `background-image: url(${recipeList[i].image}); background-position: center;`);
 
       newCard.innerHTML = `
-      <div >
+      <div>
           <span class="card-title">${recipeList[i].label}</span>
         </div>        
       `;
@@ -231,7 +234,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
   }
   //creates detail view modals for each result - currently persists after a new search
-  function recipeModal(id) {
+  function recipeModal(id,ingredients) {
     modalWrapperDiv.innerHTML = ``;
     ingredientArr = [];
     
@@ -242,26 +245,27 @@ document.addEventListener("DOMContentLoaded", (event) => {
         return item.innerText;
       });
       console.log(userPantryArr);
-
       // loop over the pantry array, crossing out any regex matches from the recipe's ingredient list
       userPantryArr.forEach(pantryItem => {
 
         // for each pantry item, loop over the ingredients list
-        for (let j = 0; j < recipeList[id].ingredients.length; j++) {
-          ingredientsList = recipeList[id].ingredients[j].text;
+        for (let j = 0; j < ingredients.length; j++) {
+          ingredientsList = ingredients[j].text;
           console.log(ingredientsList);
 
           // if ingredient string contains the pantry item description, cross it out
           if(new RegExp(pantryItem,'i').test(ingredientsList)){
-            ingredientsDisplay = `<li style="text-decoration:line-through">${ingredientsList}</li>`;
+            ingredientsDisplay = `<li style='text-decoration:line-through'>${ingredientsList}</li>`;
           }
           else{ // no match, display as normal
             ingredientsDisplay = `<li>${ingredientsList}</li>`;
           }
-
+          
           //push the formatted ingredient to the modal's ingredient array
           if(!ingredientArr.includes(ingredientsDisplay)){
+            console.log(`pushing ${ingredientsDisplay}`);
             ingredientArr.push(ingredientsDisplay);
+            ingredients.splice(j,1);
           }
         }
       });
