@@ -143,13 +143,27 @@
 {{!-- User profile modal to update username & password, opens on click event --}}
 <div id="profile" class="modal">
   <div class="modal-content">
-    <h4>My Profile</h4>
-    {{!-- <label> --}}
-      <p> {{user.username}}</p>
-      <p> {{user.password}}</p>
-    {{!-- </label> --}}
-  {{!-- <button id="user-profile-update" class="btn waves-effect waves-light" type="submit" name="action">Update
-  </button> --}}
+    <h4>My Profile</h4> <img src="{{user.image_url}}">
+    <br>
+      <h5> Current User Name: {{user.username}}</h5>
+      <h5> Current Password: {{user.password}}</h5>
+    <br>
+      <div class="row">
+        <div class="row">
+          <div class="input-field col s6">
+            <input id="username" type="text" class="validate">
+            <label for="username">New User Name</label>
+          </div>
+      
+          <div class="input-field col s6">
+            <input id="password" type="password" class="validate">
+            <label for="password">New Password</label>
+          </div>
+          <p> Did you login using Google? Click <a href="https://support.google.com/accounts/answer/41078?co=GENIE.Platform%3DDesktop&hl=en&oco=0"> here </a> to update your Google profile. </p>
+        </div>      
+      </div>
+  <button id="user-profile-update" class="btn waves-effect waves-light" type="submit" name="action">Update
+  </button>
   </div>
 </div>
 
