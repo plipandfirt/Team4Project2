@@ -88,11 +88,6 @@ h4{
   padding: 5px;
 }
 
-.pantry-search-box[type="checkbox"].filled-in:checked + label:before{
-  border: 2px solid #ff9800;
-  background-color: #ff9800;
-};
-
 main{
   grid-area: main;
   overflow: hidden;
