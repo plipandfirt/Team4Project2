@@ -29,6 +29,7 @@ const newFirstNameInput = document.querySelector("#first-name-input");
 const newLastNameInput = document.querySelector("#last-name-input");
 const newProfileImageInput = document.querySelector("#avatar-input");
 const heroImage = document.getElementById("hero-image");
+const sideNav = document.querySelectorAll(".sidenav");
 let modalID;
 let ingredientsList;
 let ingredientsDisplay;
@@ -54,6 +55,9 @@ document.addEventListener("DOMContentLoaded", (event) => {
   const pantryModalInstance = M.Modal.init(pantryModal);
   const profileModalInstance = M.Modal.init(profileModal);
 
+  //Initialize materialize side-nav
+  const sideNavInstance = M.Sidenav.init(sideNav);
+
   //Define Event listeners
 
   //delegate event listeners on nav bar to dynamically altered pantry modal and login modal button
@@ -70,6 +74,10 @@ document.addEventListener("DOMContentLoaded", (event) => {
       console.log('clicked');
       profileModalInstance.open();
     }
+    if (event.target && event.target.matches("#side-nav-open")) {
+      sideNavInstance.open();
+    }
+
   });
 
   // delegate click listeners to dynamically created api result cards to open details modal

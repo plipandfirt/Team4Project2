@@ -14,6 +14,10 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
     crossorigin="anonymous">
 
+  <!--Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
   <link href="https://fonts.googleapis.com/css?family=Shrikhand" rel="stylesheet">
 
   <link rel="stylesheet" href="/styles/styles.css" media="screen" title="no title" charset="utf-8">
@@ -26,9 +30,10 @@
   <nav class="orange darken-1">
     <div class="nav-wrapper">
       <a href="/" class="brand-logo"><img src="../images/logo-1-img.png"></a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger" id="side-nav-open"><i class="material-icons">menu</i></a></a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li>
-          <div class="input-field col s6">
+          <div class="input-field">
             <input placeholder="Search for a recipe..." id="recipe" type="text" class="validate">
           </div>
         </li>
@@ -46,6 +51,24 @@
       </ul>
     </div>
   </nav>
+  <ul class="sidenav" id="mobile-demo">
+    <li>
+          <div class="input-field">
+            <input placeholder="Search for a recipe..." id="recipe" type="text" class="validate">
+          </div>
+        </li>
+        <li><a href="#" id="search"><i class="fas fa-search"></a></i>
+          {{#unless user}}
+        <li><a href="#">My Pantry</a></li>
+        <li><a id="login-modal-button" href="#">Sign Up/Log in</a></li>
+        {{/unless}}
+        {{#if user}}
+          <li><a id="pantry-modal-button" href="#">My Pantry</a></li>
+          <li><img class="profile-pic" src="{{user.image_url}}"></li>
+          <li><a href="/auth/logout">Logout</a></li>
+          <li><a id="profile-modal-button" href="#">My Profile</a></li>
+        {{/if}}
+  </ul>  
 
   
 

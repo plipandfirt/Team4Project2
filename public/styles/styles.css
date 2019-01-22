@@ -32,7 +32,7 @@ html {
 }
 
 #hero-image {
-  background-image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/food-eating-potatoes-beer-8313.jpg");
+  background-image:linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("../images/bg-veggies-img.jpg");
   height: 100%;
   background-position: center;
   background-repeat: no-repeat;
@@ -48,6 +48,7 @@ html {
   transform: translate(-50%, -50%);
   color: white;
   font-family: 'Shrikhand', cursive;
+  text-shadow: -10px 10px 5px rgba(100, 100, 100, 0.6);
 }
 
 body{
