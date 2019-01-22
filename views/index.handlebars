@@ -47,6 +47,8 @@
     </div>
   </nav>
 
+  
+
   <main>
     {{!-- Add pantry search boxes here if logged in --}}
     {{#if user}}
@@ -62,6 +64,13 @@
         </button>
     </div>
     {{/if}}
+
+    <div id="hero-image">
+  <div id="hero-text">
+    <h1>Welcome to Cornucopia!</h1>
+    <p>Sign up now and begin your culinary journey.</p>
+  </div>
+</div> 
 
     {{!-- Search results populate in card-wrapper --}}
     <div id="card-wrapper">
@@ -120,7 +129,7 @@
 {{!-- Form to add items to user's pantry, opens on click event --}}
 <div id="pantry" class="modal">
   <div class="modal-content pantry-modal">
-    <h4 class="modal-header">{{user.username}}'s Pantry</h4>
+    <h4 class="modal-header">{{user.first_name}}'s Pantry</h4>
     <form action="api/pantry" method="POST" class="pantry-text">
       <div class="input-field">
         <input id="pantryItem" type="text" class="validate" name="ingredient">
