@@ -8,16 +8,52 @@
 
 .brand-logo{
   padding-left: 10px;
+  font-family: 'Shrikhand', cursive;
+  display:inline-block;
+  height: 100%;
+}
+
+.brand-logo>img {
+    position: relative;
+    top: 10px;
+    padding-left:10px;
+}
+
+html {
+  width: 100%;
+  height: 100%;
 }
 
 .profile-pic{
   max-width: 50px;
   max-height: 50px;
+  margin-top: 15px;
+  border-radius:50%;
+}
+
+#hero-image {
+  background-image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/food-eating-potatoes-beer-8313.jpg");
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+#hero-text {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-family: 'Shrikhand', cursive;
 }
 
 body{
   background: rgb(209, 209, 209);
   background: url(../images/main-image.jpg) no-repeat center center fixed; 
+  background-size: cover;
   /* background: linear-gradient(45deg, rgba(132,152,137,1) 7%, rgba(189,255,196,1) 93%); */
   display: grid;
   grid-template-columns: 1fr;
@@ -46,8 +82,8 @@ h4{
 }
 
 .pantry-div{
-  max-height: 50px;
-  background: rgba(255,255,255,.6);
+  max-height: 100px;
+  background: rgba(255,255,255,.9);
   padding: 5px;
 }
 
@@ -57,19 +93,6 @@ main{
   overflow-y: hidden;
   align-content: start;
 }
-
-/* .modal{
-  position: absolute;
-  top: 30%;
-  right: 100px;
-  bottom: 0;
-  left: 0;
-  z-index: 10040;
-  overflow: auto;
-  overflow-y: auto;
-  max-height: 55%;
-  max-width: 50%;;
-} */
 
 .modal {
   border: 10px solid #E49C0B;
@@ -83,6 +106,18 @@ main{
   display:grid;
   grid-template-columns: 1fr 1fr 30px;
   grid-gap: 10px;
+  grid-template-areas: "header header close"
+                        "image ingredients ."
+                        ". link ."
+}
+
+@media (max-width: 700px) {
+  .recipe-detail {
+  grid-template-areas: "header header close"
+                        "image image image"
+                        "ingredients ingredients ingredients"
+                        "link link link"
+  }
 }
 
 .modal-header {
@@ -99,16 +134,19 @@ main{
   grid-row: 2 / span 2;
   margin: auto;
   border-radius: 25px;
+  grid-area: image;
 }
 
 .modal-text {
   grid-column: 2 / span 1;
   grid-row: 2 / span 1;
+  grid-area: ingredients;
 }
 
 .modal-src {
   grid-column: 2 / span 1;
   grid-row: 3 / span 1;
+  grid-area: link;
 }
 
 .recipe-x {
@@ -116,6 +154,7 @@ main{
   grid-row: 1 / span 1;
   margin:auto;
   margin-top:0px;
+  grid-area: close;
 }
 
 /*Pantry Modal Styling*/
@@ -123,11 +162,16 @@ main{
   display: grid;
   grid-template-columns: 1fr 1fr 30px;
   grid-gap: 10px;
+  grid-template-areas: "header header close"
+                      "search search search"
+                      "items items items"
 }
 
 .pantry-text {
   grid-column: 1 / span 2;
   grid-row: 2 / span 1;
+  margin:auto;
+  grid-area: search;
 }
 
 .submit-btn {
@@ -139,11 +183,30 @@ main{
 .pantry-items {
   grid-column: 1 / span 2;
   grid-row: 3 / span 1;
-  display:flex;
+  display:grid;
+  grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+  grid-gap: 1rem;
+  grid-area:items;
 }
 
 .pantry-item {
   display: inline-block;
+  grid-column-start: auto;
+  grid-row-start: auto;
+  margin: 5px;
+}
+
+.pantry-x {
+  grid-column:  3 / span 1;
+  grid-row: 1 / span 1;
+  margin:auto;
+  margin-top:0px;
+  grid-area: close;
+}
+
+.pantry-search-item {
+  padding-right: 20px;
+  text-transform: uppercase;
 }
 
 .search{
@@ -167,7 +230,6 @@ footer{
   margin-top: 3px;
   grid-column: 1 / -1;
   color: bisque;
-  font-family: 'McLaren', cursive;
   text-align: center;
   padding: 1rem 0;
   grid-area: footer;
@@ -182,10 +244,12 @@ footer{
 
 #card-wrapper {
   display: grid;
-  grid-template-columns: repeat(auto-fill,minmax(15rem,1fr));
+  grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
   grid-gap: 1rem;
   padding: 10px;
   margin: auto;
+  max-height: 100%;
+  overflow-y: auto;
 }
 
 .card{

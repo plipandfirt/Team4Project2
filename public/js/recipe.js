@@ -28,6 +28,7 @@ const newPasswordInput = document.querySelector("#password-input");
 const newFirstNameInput = document.querySelector("#first-name-input");
 const newLastNameInput = document.querySelector("#last-name-input");
 const newProfileImageInput = document.querySelector("#avatar-input");
+const heroImage = document.getElementById("hero-image");
 let modalID;
 let ingredientsList;
 let ingredientsDisplay;
@@ -171,6 +172,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
   //Searches for recipe and puts results into an array - then calls makeCards function
   searchButton.addEventListener("click", (event) => {
+    
     modalWrapperDiv.innerHTML = ``;
     console.log(searchInput.value);
     fetchRecipes(searchInput.value).then(response => {
@@ -187,6 +189,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
       }
       console.log(recipeList);
       makeCards();
+      heroImage.style.display = "none";
     });
   });
 
@@ -215,6 +218,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
       }
       console.log(recipeList);
       makeCards();
+      heroImage.style.display = "none";
     });
   });
 
