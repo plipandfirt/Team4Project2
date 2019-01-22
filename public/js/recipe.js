@@ -187,6 +187,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
       }
       console.log(recipeList);
       makeCards();
+      heroImage.style.display = "none";
     });
   });
 
@@ -215,6 +216,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
       }
       console.log(recipeList);
       makeCards();
+      heroImage.style.display = "none";
     });
   });
 
