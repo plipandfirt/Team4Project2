@@ -28,6 +28,7 @@ const newPasswordInput = document.querySelector("#password-input");
 const newFirstNameInput = document.querySelector("#first-name-input");
 const newLastNameInput = document.querySelector("#last-name-input");
 const newProfileImageInput = document.querySelector("#avatar-input");
+const heroImage = document.querySelector("#hero-image");
 let modalID;
 let ingredientsList;
 let ingredientsDisplay;
@@ -186,8 +187,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
         recipeList.push(newRecipe);
       }
       console.log(recipeList);
-      makeCards();
       heroImage.style.display = "none";
+      makeCards();
     });
   });
 
