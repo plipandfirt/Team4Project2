@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
   console.log(userPantryBoxes);
   console.log(userPantry);
 
- 
+
 
   // Initialize materialize modals
   const loginModalInstance = M.Modal.init(loginModal);
@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
       modalID = event.target.dataset.id;
       selectedIngredients = recipeList[modalID].ingredients.slice(0);
       console.log(`making modal with ${selectedIngredients} at id ${modalID}`);
-      recipeModal(modalID,selectedIngredients);
+      recipeModal(modalID, selectedIngredients);
       recipeModalInit = document.querySelector(`#recipe-full${modalID}`);
       recipeModalInstance = M.Modal.init(recipeModalInit);
       recipeModalInstance.open();
@@ -118,9 +118,9 @@ document.addEventListener("DOMContentLoaded", (event) => {
     const newProfileImage = newProfileImageInput.value;
 
     console.log(`Updating with ${newUsername} and ${newPassword}`);
-    await fetch("/profile",{
+    await fetch("/profile", {
       method: "PUT",
-      headers:{
+      headers: {
         "Accept": "application/json",
         "Content-Type": "application/json"
       },
@@ -203,14 +203,14 @@ document.addEventListener("DOMContentLoaded", (event) => {
   // when the pantry search button is clicked, loop through all check boxes. if checked, add the pantry item from the same index
   pantrySearchButton.addEventListener("click", event => {
     searchArr = [];
-    pantryCheckBoxes.forEach((box,index) => {
-      if(box.checked){
+    pantryCheckBoxes.forEach((box, index) => {
+      if (box.checked) {
         console.log(`box ${userPantry[index].innerText} is checked`);
         searchArr.push(userPantry[index].innerText);
       }
     });
     console.log(searchArr.join("+"));
-    
+
     fetchRecipes(searchArr.join("+")).then(response => {
       recipeList = [];
       for (let i = 0; i < response.data.length; i++) {
@@ -230,18 +230,18 @@ document.addEventListener("DOMContentLoaded", (event) => {
   });
 
   pantryDeleteButtons.forEach(button => {
-    button.addEventListener("click",async event => {
+    button.addEventListener("click", async event => {
       const id = event.target.dataset.delete;
       console.log(id);
-      try{
-        await fetch(`/api/pantry/${id}`,{
-          method:"DELETE"
+      try {
+        await fetch(`/api/pantry/${id}`, {
+          method: "DELETE"
         });
         // window.location = "/profile";
         location.reload();
       }
-      catch(err){
-        if(err) {throw err;}
+      catch (err) {
+        if (err) { throw err; }
       }
     });
   });
@@ -276,50 +276,50 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
   }
   //creates detail view modals for each result - currently persists after a new search
-  function recipeModal(id,ingredients) {
+  function recipeModal(id, ingredients) {
     modalWrapperDiv.innerHTML = ``;
     ingredientArr = [];
-    
+
     // if a user is logged in, handle striking out ingredients based on their pantry
-    if(userPantry.length > 0){
+    if (userPantry.length > 0) {
       // create an array of the currently logged in user's pantry items to check against recipe ingredients
       userPantryArr = userPantry.map(item => {
         return item.innerText;
       });
       console.log(userPantryArr);
-      console.log(`**BEFORE**`)
-      ingredients.forEach(item=>console.log(item));
+      console.log(`**BEFORE**`);
+      ingredients.forEach(item => console.log(item));
 
       // for each pantry item, loop over the ingredients list
-      for (var j = ingredients.length-1; j > -1; j--) {
+      for (var j = ingredients.length - 1; j > -1; j--) {
         ingredientsList = ingredients[j].text;
         console.log(`checking ${ingredientsList}`);
-        userPantryArr.some(function(pantryItem){
+        userPantryArr.some(function (pantryItem) {
           console.log(`checking for pantry item ${pantryItem}`);
-           if(new RegExp(pantryItem,'ig').test(ingredientsList)){
+          if (new RegExp(pantryItem, 'ig').test(ingredientsList)) {
             ingredientsDisplay = `<li style='text-decoration:line-through'>${ingredientsList}</li>`;
             ingredientArr.push(ingredientsDisplay);
             console.log(`pushed ${ingredientsDisplay}`);
-            ingredients.splice(j,1);
+            ingredients.splice(j, 1);
             return;
           }
-      });
-      console.log(`**AFTER**`);
+        });
+        console.log(`**AFTER**`);
 
-      ingredients.forEach(item=>{
-        console.log(item);
-        if(j === 0){
-          ingredientsDisplay = `<li>${item.text}</li>`;
-          if(!ingredientArr.includes(ingredientsDisplay)){
-            ingredientArr.push(ingredientsDisplay);
+        ingredients.forEach(item => {
+          console.log(item);
+          if (j === 0) {
+            ingredientsDisplay = `<li>${item.text}</li>`;
+            if (!ingredientArr.includes(ingredientsDisplay)) {
+              ingredientArr.push(ingredientsDisplay);
+            }
           }
-        }
-      });
+        });
       }
     }
-    
+
     // else, display ingredients normally, ignoring the pantryArr
-    else{
+    else {
       // for each pantry item, loop over the ingredients list
       for (let j = 0; j < recipeList[id].ingredients.length; j++) {
         ingredientsList = recipeList[id].ingredients[j].text;
@@ -331,7 +331,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
       }
 
     }
-    
+
 
     let recipeModal = document.createElement(`div`);
     recipeModal.classList.add(`modal`);
