@@ -172,7 +172,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
   //Searches for recipe and puts results into an array - then calls makeCards function
   searchButton.addEventListener("click", (event) => {
-    
     modalWrapperDiv.innerHTML = ``;
     console.log(searchInput.value);
     fetchRecipes(searchInput.value).then(response => {
