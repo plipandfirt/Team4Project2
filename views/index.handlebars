@@ -4,12 +4,17 @@
 <head>
   <meta charset="utf-8">
 
+  <!-- Favicon -->
+  <link rel="icon" href="../public/images/favicon.jpg" type="image/x-icon" />
+
   <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
   <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>	
+  <script src="https://unpkg.com/popper.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
+  
   <!--Font Awesome for Icons -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
     crossorigin="anonymous">
@@ -34,7 +39,7 @@
         </li>
         <li><a href="#" id="search"><i class="fas fa-search"></a></i>
           {{#unless user}}
-        <li><a href="#">My Pantry</a></li>
+        <li><a id="pantry" href="#">My Pantry</a></li>
         <li><a id="login-modal-button" href="#">Sign Up/Log in</a></li>
         {{/unless}}
         {{#if user}}
@@ -198,3 +203,8 @@
 
 </body>
 </html>
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>	
+  <script src="https://unpkg.com/popper.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>

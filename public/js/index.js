@@ -4,6 +4,23 @@ var $exampleDescription = $("#example-description");
 var $submitBtn = $("#submit");
 var $exampleList = $("#example-list");
 
+//* Popper Variable - https://popper.js.org/ */
+$("#pantry").hover(
+  function () {
+    $(this)
+      .popover({
+        trigger: "hover",
+        placement: 'right',
+        content: "Please sign in to see your pantry",
+      })
+      .popover("show");
+  },
+
+  function () {
+    $(this).popover("hide");
+  }
+);
+
 
 // The API object contains methods for each kind of request we'll make
 var API = {
