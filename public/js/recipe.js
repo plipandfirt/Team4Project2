@@ -28,8 +28,8 @@ const newPasswordInput = document.querySelector("#password-input");
 const newFirstNameInput = document.querySelector("#first-name-input");
 const newLastNameInput = document.querySelector("#last-name-input");
 const newProfileImageInput = document.querySelector("#avatar-input");
-const heroImage = document.getElementById("hero-image");
 const sideNav = document.querySelectorAll(".sidenav");
+const heroImage = document.querySelector("#hero-image");
 let modalID;
 let ingredientsList;
 let ingredientsDisplay;
@@ -180,7 +180,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
   //Searches for recipe and puts results into an array - then calls makeCards function
   searchButton.addEventListener("click", (event) => {
-    
     modalWrapperDiv.innerHTML = ``;
     console.log(searchInput.value);
     fetchRecipes(searchInput.value).then(response => {
@@ -196,8 +195,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
         recipeList.push(newRecipe);
       }
       console.log(recipeList);
-      makeCards();
       heroImage.style.display = "none";
+      makeCards();
     });
   });
 
@@ -288,31 +287,37 @@ document.addEventListener("DOMContentLoaded", (event) => {
         return item.innerText;
       });
       console.log(userPantryArr);
-      // loop over the pantry array, crossing out any regex matches from the recipe's ingredient list
-      userPantryArr.forEach(pantryItem => {
+      console.log(`**BEFORE**`)
+      ingredients.forEach(item=>console.log(item));
 
-        // for each pantry item, loop over the ingredients list
-        for (let j = 0; j < ingredients.length; j++) {
-          ingredientsList = ingredients[j].text;
-          console.log(ingredientsList);
-
-          // if ingredient string contains the pantry item description, cross it out
-          if(new RegExp(pantryItem,'i').test(ingredientsList)){
+      // for each pantry item, loop over the ingredients list
+      for (var j = ingredients.length-1; j > -1; j--) {
+        ingredientsList = ingredients[j].text;
+        console.log(`checking ${ingredientsList}`);
+        userPantryArr.some(function(pantryItem){
+          console.log(`checking for pantry item ${pantryItem}`);
+           if(new RegExp(pantryItem,'ig').test(ingredientsList)){
             ingredientsDisplay = `<li style='text-decoration:line-through'>${ingredientsList}</li>`;
-          }
-          else{ // no match, display as normal
-            ingredientsDisplay = `<li>${ingredientsList}</li>`;
-          }
-          
-          //push the formatted ingredient to the modal's ingredient array
-          if(!ingredientArr.includes(ingredientsDisplay)){
-            console.log(`pushing ${ingredientsDisplay}`);
             ingredientArr.push(ingredientsDisplay);
+            console.log(`pushed ${ingredientsDisplay}`);
             ingredients.splice(j,1);
+            return;
+          }
+      });
+      console.log(`**AFTER**`);
+
+      ingredients.forEach(item=>{
+        console.log(item);
+        if(j === 0){
+          ingredientsDisplay = `<li>${item.text}</li>`;
+          if(!ingredientArr.includes(ingredientsDisplay)){
+            ingredientArr.push(ingredientsDisplay);
           }
         }
       });
+      }
     }
+    
     // else, display ingredients normally, ignoring the pantryArr
     else{
       // for each pantry item, loop over the ingredients list
@@ -348,5 +353,3 @@ document.addEventListener("DOMContentLoaded", (event) => {
   }
 
 });
-
-
