@@ -39,7 +39,7 @@
         {{/unless}}
         {{#if user}}
           <li><a id="pantry-modal-button" href="#">My Pantry</a></li>
-          <li><img src="{{user.image_url}}"></li>
+          <li><img class="profile-pic" src="{{user.image_url}}"></li>
           <li><a href="/auth/logout">Logout</a></li>
           <li><a id="profile-modal-button" href="#">My Profile</a></li>
         {{/if}}
@@ -143,27 +143,47 @@
 {{!-- User profile modal to update username & password, opens on click event --}}
 <div id="profile" class="modal">
   <div class="modal-content">
-    <h4>My Profile</h4> <img src="{{user.image_url}}">
+    <h4>My Profile</h4> <img class="profile-pic" src="{{user.image_url}}">
     <br>
       <h5> Current User Name: {{user.username}}</h5>
       <h5> Current Password: {{user.password}}</h5>
+      <h5>First Name: {{user.first_name}}</h5>
+      <h5>Last Name: {{user.last_name}}</h5>
     <br>
       <div class="row">
         <div class="row">
           <div class="input-field col s6">
-            <input id="username" type="text" class="validate">
-            <label for="username">New User Name</label>
+            <input name="username" id="username-input" type="text" class="validate">
+            <label for="username">Update User Name</label>
           </div>
       
           <div class="input-field col s6">
-            <input id="password" type="password" class="validate">
-            <label for="password">New Password</label>
+            <input name="password" id="password-input" type="password" class="validate">
+            <label for="password">Update Password</label>
           </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s6">
+            <input name="first-name" id="first-name-input" type="text" class="validate">
+            <label for="password">Update First Name</label>
+          </div>
+
+          <div class="input-field col s6">
+            <input name="last-name" id="last-name-input" type="text" class="validate">
+            <label for="last-name">Update Last Name</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <input name="avatar" id="avatar-input" type="text" class="validate">
+            <label for="avatar">Update Profile Image URL</label>
+          </div>
+        </div>
           <p> Did you login using Google? Click <a href="https://support.google.com/accounts/answer/41078?co=GENIE.Platform%3DDesktop&hl=en&oco=0"> here </a> to update your Google profile. </p>
         </div>      
+        <button id="user-profile-update" class="btn waves-effect waves-light" type="submit" name="action">Update
+        </button>
       </div>
-  <button id="user-profile-update" class="btn waves-effect waves-light" type="submit" name="action">Update
-  </button>
   </div>
 </div>
 

@@ -24,6 +24,11 @@ html {
   height: 100%;
 }
 
+.profile-pic{
+  max-width: 50px;
+  max-height: 50px;
+}
+
 body{
   background: rgb(209, 209, 209);
   background: url(../images/main-image.jpg) no-repeat center center fixed; 
