@@ -1,3 +1,4 @@
+/*eslint linebreak-style:0 */
 const db = require("../models");
 
 module.exports = function(app) {
