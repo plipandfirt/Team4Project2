@@ -26,9 +26,10 @@
   <nav class="orange darken-1">
     <div class="nav-wrapper">
       <a href="/" class="brand-logo"><img src="../images/logo-1-img.png"></a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger" id="side-nav-open"><i class="fas fa-bars"></i></a></a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li>
-          <div class="input-field col s6">
+          <div class="input-field">
             <input placeholder="Search for a recipe..." id="recipe" type="text" class="validate">
           </div>
         </li>
@@ -39,13 +40,31 @@
         {{/unless}}
         {{#if user}}
           <li><a id="pantry-modal-button" href="#">My Pantry</a></li>
-          <li><img class="profile-pic" src="{{user.image_url}}"></li>
+          <li><img class="profile-pic-small" src="{{user.image_url}}"></li>
           <li><a href="/auth/logout">Logout</a></li>
           <li><a id="profile-modal-button" href="#">My Profile</a></li>
         {{/if}}
       </ul>
     </div>
   </nav>
+  <ul class="sidenav orange" id="mobile-demo">
+    <li>
+          <div class="input-field">
+            <input placeholder="Search for a recipe..." id="recipe" type="text" class="validate">
+          </div>
+        </li>
+        <li><a href="#" id="search"><i class="fas fa-search"></a></i>
+          {{#unless user}}
+        <li><a href="#">My Pantry</a></li>
+        <li><a id="login-modal-button" href="#">Sign Up/Log in</a></li>
+        {{/unless}}
+        {{#if user}}
+          <li><a id="pantry-modal-button" href="#">My Pantry</a></li>
+          <li><img class="profile-pic-small" src="{{user.image_url}}"></li>
+          <li><a href="/auth/logout">Logout</a></li>
+          <li><a id="profile-modal-button" href="#">My Profile</a></li>
+        {{/if}}
+  </ul>  
 
   
 
@@ -68,7 +87,12 @@
     <div id="hero-image">
   <div id="hero-text">
     <h1>Welcome to Cornucopia!</h1>
+    {{#unless user}}
     <p>Sign up now and begin your culinary journey.</p>
+    {{/unless}}
+    {{#if user}}
+    <p>Click the My Pantry button to start adding ingredients to your pantry.</p>
+    {{/if}}
   </div>
 </div> 
 
@@ -151,15 +175,18 @@
 
 {{!-- User profile modal to update username & password, opens on click event --}}
 <div id="profile" class="modal">
-  <div class="modal-content">
-    <h4>My Profile</h4> <img class="profile-pic" src="{{user.image_url}}">
+  <div class="modal-content profile-modal">
+    <a href="#!" class="modal-close btn-flat profile-x"><i class="fas fa-times"></i></a>
+    <h4 id="profile-header">My Profile</h4> <img id="profile-image" class="profile-pic" src="{{user.image_url}}">
     <br>
+    <div class="user-info">
       <h5> Current User Name: {{user.username}}</h5>
       <h5> Current Password: {{user.password}}</h5>
       <h5>First Name: {{user.first_name}}</h5>
       <h5>Last Name: {{user.last_name}}</h5>
+    </div>
     <br>
-      <div class="row">
+      <div class="row update-form">
         <div class="row">
           <div class="input-field col s6">
             <input name="username" id="username-input" type="text" class="validate">
@@ -189,9 +216,10 @@
           </div>
         </div>
           <p> Did you login using Google? Click <a href="https://support.google.com/accounts/answer/41078?co=GENIE.Platform%3DDesktop&hl=en&oco=0"> here </a> to update your Google profile. </p>
-        </div>      
-        <button id="user-profile-update" class="btn waves-effect waves-light" type="submit" name="action">Update
+        <button id="user-profile-update" class="btn waves-effect waves-light orange darken-2" type="submit" name="action">Update
         </button>
+        </div>      
+        
       </div>
   </div>
 </div>

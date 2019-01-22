@@ -24,7 +24,7 @@ html {
   height: 100%;
 }
 
-.profile-pic{
+.profile-pic-small{
   max-width: 50px;
   max-height: 50px;
   margin-top: 15px;
@@ -32,7 +32,7 @@ html {
 }
 
 #hero-image {
-  background-image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/food-eating-potatoes-beer-8313.jpg");
+  background-image:linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("../images/bg-veggies-img.jpg");
   height: 100%;
   background-position: center;
   background-repeat: no-repeat;
@@ -48,6 +48,7 @@ html {
   transform: translate(-50%, -50%);
   color: white;
   font-family: 'Shrikhand', cursive;
+  text-shadow: -10px 10px 5px rgba(100, 100, 100, 0.6);
 }
 
 body{
@@ -86,6 +87,11 @@ h4{
   background: rgba(255,255,255,.9);
   padding: 5px;
 }
+
+.pantry-search-box[type="checkbox"].filled-in:checked + label:before{
+  border: 2px solid #ff9800;
+  background-color: #ff9800;
+};
 
 main{
   grid-area: main;
@@ -207,6 +213,49 @@ main{
 .pantry-search-item {
   padding-right: 20px;
   text-transform: uppercase;
+}
+
+/*Profile modal styling */
+.profile-modal {
+  display: grid;
+  grid-template-columns: 1fr 1fr 30px;
+  grid-gap:10px;
+  grid-template-areas: "header header close"
+                        "image info info"
+                        "form form form"
+                       
+}
+@media (max-width: 700px) {
+  .profile-modal {
+  grid-template-areas: "header header close"
+                        "image image image"
+                        "info info info"
+                        "form form form"
+  }
+}
+#profile-header {
+  grid-area:header;
+  margin:auto;
+}
+
+#profile-image {
+  grid-area:image;
+  max-width: 250px;
+  max-height: 250px;
+  margin:auto;
+}
+
+.user-info {
+  grid-area:info;
+  margin:auto;
+}
+
+.update-form {
+  grid-area:form
+}
+
+.profile-x {
+  grid-area: close;
 }
 
 .search{
