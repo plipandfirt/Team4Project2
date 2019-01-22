@@ -9,6 +9,14 @@
 .brand-logo{
   padding-left: 10px;
   font-family: 'Shrikhand', cursive;
+  display:inline-block;
+  height: 100%;
+}
+
+.brand-logo>img {
+    position: relative;
+    top: 10px;
+    padding-left:10px;
 }
 
 html {
