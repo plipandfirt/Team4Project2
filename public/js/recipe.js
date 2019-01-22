@@ -278,15 +278,19 @@ document.addEventListener("DOMContentLoaded", (event) => {
       console.log(userPantryArr);
       // loop over the pantry array, crossing out any regex matches from the recipe's ingredient list
       userPantryArr.forEach(pantryItem => {
+        console.log(`**Looping pantry item ${pantryItem}`);
 
         // for each pantry item, loop over the ingredients list
         for (let j = 0; j < ingredients.length; j++) {
           ingredientsList = ingredients[j].text;
-          console.log(ingredientsList);
+          console.log(`checking ${ingredientsList}`);
 
           // if ingredient string contains the pantry item description, cross it out
-          if(new RegExp(pantryItem,'i').test(ingredientsList)){
+          if(new RegExp(pantryItem,'ig').test(ingredientsList)){
             ingredientsDisplay = `<li style='text-decoration:line-through'>${ingredientsList}</li>`;
+            ingredientArr.push(ingredientsDisplay);
+            ingredients.splice(j,1);
+            return;
           }
           else{ // no match, display as normal
             ingredientsDisplay = `<li>${ingredientsList}</li>`;
@@ -297,6 +301,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
             console.log(`pushing ${ingredientsDisplay}`);
             ingredientArr.push(ingredientsDisplay);
             ingredients.splice(j,1);
+            j = 0;
           }
         }
       });
