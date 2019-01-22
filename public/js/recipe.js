@@ -276,35 +276,46 @@ document.addEventListener("DOMContentLoaded", (event) => {
         return item.innerText;
       });
       console.log(userPantryArr);
-      // loop over the pantry array, crossing out any regex matches from the recipe's ingredient list
-      userPantryArr.forEach(pantryItem => {
-        console.log(`**Looping pantry item ${pantryItem}`);
 
-        // for each pantry item, loop over the ingredients list
-        for (let j = 0; j < ingredients.length; j++) {
-          ingredientsList = ingredients[j].text;
-          console.log(`checking ${ingredientsList}`);
+      // for each pantry item, loop over the ingredients list
+      for (let j = 0; j < ingredients.length; j++) {
+        ingredientsList = ingredients[j].text;
+        console.log(`checking ${ingredientsList}`);
 
+        // loop over the pantry array, crossing out any regex matches from the recipe's ingredient list
+        userPantryArr.forEach((pantryItem,index) => {
+          console.log(`in iteration ${index}`);
+          console.log(`**Looping pantry item ${pantryItem}`);
           // if ingredient string contains the pantry item description, cross it out
           if(new RegExp(pantryItem,'ig').test(ingredientsList)){
             ingredientsDisplay = `<li style='text-decoration:line-through'>${ingredientsList}</li>`;
             ingredientArr.push(ingredientsDisplay);
+            console.log(`pushed ${ingredientsDisplay}`);
             ingredients.splice(j,1);
+            j = 0;
             return;
           }
           else{ // no match, display as normal
-            ingredientsDisplay = `<li>${ingredientsList}</li>`;
+            if(index === (userPantryArr.length - 1)){
+              // if(!ingredientArr.includes(ingredientsDisplay)){
+              ingredientsDisplay = `<li>${ingredientsList}</li>`;
+              ingredientArr.push(ingredientsDisplay);
+              console.log(`pushing ${ingredientsDisplay}`);
+              ingredients.splice(j,1);
+              j = 0;
+              // }
+            }
           }
-          
-          //push the formatted ingredient to the modal's ingredient array
-          if(!ingredientArr.includes(ingredientsDisplay)){
-            console.log(`pushing ${ingredientsDisplay}`);
-            ingredientArr.push(ingredientsDisplay);
-            ingredients.splice(j,1);
-            j = 0;
-          }
-        }
-      });
+          return;
+          // //push the formatted ingredient to the modal's ingredient array
+          // if(!ingredientArr.includes(ingredientsDisplay)){
+          //   console.log(`pushing ${ingredientsDisplay}`);
+          //   ingredientArr.push(ingredientsDisplay);
+          //   j = 0;
+          // }  
+        });
+
+      }
     }
     // else, display ingredients normally, ignoring the pantryArr
     else{
