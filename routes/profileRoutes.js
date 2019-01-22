@@ -1,3 +1,4 @@
+/* eslint camelcase: 0 */
 const db = require("../models");
 module.exports = function(app){
 
@@ -23,5 +24,61 @@ module.exports = function(app){
     console.log(data);
 
     res.render("index",{user:req.user,pantry:data});
+  });
+
+  app.put("/profile/", authCheck, async (req,res) => {
+    console.log(req.body);
+    const {newUsername,newPassword,newFirstName,newLastName,newProfileImage} = req.body;
+    if(newUsername){
+      await db.user.update({
+        username: newUsername
+      },
+      {
+        where:{
+          id: req.user.id
+        }
+      });
+    }
+    if(newPassword){
+      await db.user.update({
+        password: newPassword
+      },
+      {
+        where:{
+          id: req.user.id
+        }
+      });
+    }
+    if(newFirstName){
+      await db.user.update({
+        first_name: newFirstName
+      },
+      {
+        where:{
+          id: req.user.id
+        }
+      });
+    }
+    if(newLastName){
+      await db.user.update({
+        last_name: newLastName
+      },
+      {
+        where:{
+          id: req.user.id
+        }
+      });
+    }
+    if(newProfileImage){
+      await db.user.update({
+        image_url: newProfileImage
+      },
+      {
+        where:{
+          id: req.user.id
+        }
+      });
+    }
+    res.render("/");
   });
 };

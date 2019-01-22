@@ -22,6 +22,12 @@ const pantryDeleteButtons = document.querySelectorAll(".pantry-delete");
 const profileModal = document.querySelector("#profile");
 const profileButton = document.querySelector("#profile-modal-button");
 const pantrySearchButton = document.querySelector("#user-pantry-search");
+const profileUpdateButton = document.querySelector("#user-profile-update");
+const newUsernameInput = document.querySelector("#username-input");
+const newPasswordInput = document.querySelector("#password-input");
+const newFirstNameInput = document.querySelector("#first-name-input");
+const newLastNameInput = document.querySelector("#last-name-input");
+const newProfileImageInput = document.querySelector("#avatar-input");
 let modalID;
 let ingredientsList;
 let ingredientsDisplay;
@@ -93,6 +99,31 @@ document.addEventListener("DOMContentLoaded", (event) => {
       body: JSON.stringify({ "username": username, "password": password })
     });
     window.location = "/profile";
+  });
+
+  profileUpdateButton.addEventListener("click", async (event) => {
+    const newUsername = newUsernameInput.value;
+    const newPassword = newPasswordInput.value;
+    const newFirstName = newFirstNameInput.value;
+    const newLastName = newLastNameInput.value;
+    const newProfileImage = newProfileImageInput.value;
+
+    console.log(`Updating with ${newUsername} and ${newPassword}`);
+    await fetch("/profile",{
+      method: "PUT",
+      headers:{
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        "newUsername": newUsername,
+        "newPassword": newPassword,
+        "newFirstName": newFirstName,
+        "newLastName": newLastName,
+        "newProfileImage": newProfileImage
+      })
+    });
+    window.location = "/";
   });
 
   //button to create user account inside of login modal
