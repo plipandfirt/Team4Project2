@@ -41,7 +41,6 @@ This application is deployed to Heroku and Github.
 ## Technologies Used
    * express - Server side framework
    * css grid - A 2 dimensional layout system that helps create complex responsive web designs
-   * poppers.js - A kicka$$ library used to manage poppers
    * handlebars - Templating Engine
    * passport - User Authentication library
    * mySql - Relational database management system
