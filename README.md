@@ -18,8 +18,8 @@ _Note:_  While logged in a user may also update their profile by clicking on the
 
 ## Deployed Sites
 This application is deployed to Heroku and Github. 
-   * [https://cornucopia-todo-team-name.herokuapp.com/]
-   * [https://plipandfirt.github.io/Team4Project2/]
+   * https://cornucopia-todo-team-name.herokuapp.com/
+   * https://plipandfirt.github.io/Team4Project2/
   
 ## Developer Notes
    * .env - stores environment variables used by the dotenv package and holds keys & passwords for mySQL, API, OAuth & Heroku
